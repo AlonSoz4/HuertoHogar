@@ -4,12 +4,126 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huerto Hogar - Del Campo A Tu Hogar</title>
+
+    <link rel="icon" type="image/png" href="src/assets/images/HuertoHogar-Logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 <body>
-    <header>
-        
+    <header class="main-header" id="site-header">
+        <div class="header-container">  
+            
+            <div>
+                <img src="src/assets/images/HuertoHogar-Logo.jpg" alt="Logo HuertoHogar" class="site-logo" id="main-logo">
+                <span class="site-title" id="main-title">Huerto Hogar</span>
+            </div>
+
+            <nav class="main-nav" id="navigation-bar">
+                <ul id="nav-list">
+                    <li><a href="index.html" class="nav-link active" id="nav-home">Home</a></li>
+                    <li><a href="src/components/tienda/productos.html" class="nav-link" id="nav-products">Productos</a></li>
+                    <li><a href="src/components/tienda/nosotros.html" class="nav-link" id="nav-about">Nosotros</a></li>
+                    <li><a href="src/components/tienda/blogs.html" class="nav-link" id="nav-blogs">Blogs</a></li>
+                    <li><a href="src/components/tienda/contacto.html" class="nav-link" id="nav-contact">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="cart-area" id="cart-status-area">
+                <a href="#" id="cart-btn" class="cart-link">
+                    <span class="cart-icon" id="cart-ico">🛒</span> 
+                    <span class="cart-text" id="cart-text-label">Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+
+        </div>
     </header>
+
+    <div class="session-bar" id="user-session-bar">
+        <div class="session-container">
+            <a href="src/components/tienda/login.html" class="session-link" id="link-login">Iniciar sesión</a>
+            <span class="session-divider" id="session-sep">|</span>
+            <a href="src/components/tienda/registro.html" class="session-link" id="link-register">Registrar usuario</a>
+        </div>
+    </div>
     
+
+<main>
+
+    <section class="hero-section" id="home-hero">
+        <div class="hero-container">
+                
+            <div class="hero-content">
+                <h1 class="hero-title" id="hero-main-heading">TIENDA ONLINE</h1>
+                <p class="hero-description">
+                        HuertoHogar es una tienda online dedicada a llevar la frescura y calidad de los productos del campo directamente a la puerta de nuestros clientes en Chile.
+                        Con más de 6 años de experiencia, operamos en más de 9 puntos a lo largo del país, incluyendo ciudades clave como Santiago, Puerto Montt, Villarica, Nacimiento, Viña del Mar, Valparaíso, y Concepción.
+                        Nuestra misión es conectar a las familias chilenas con el campo, promoviendo un estilo de vida saludable y sostenible.
+                </p>
+                <div class="hero-actions">
+                    <a href="src/components/tienda/productos.html" class="btn-hero" id="btn-view-products">
+                            <span>📥</span> ver productos
+                    </a>
+                </div>
+            </div>
+                
+            <div class="hero-media">
+                <img src="src/assets/images/hero-banner.jpg" alt="Productos frescos de HuertoHogar" class="hero-image" id="hero-img-display">
+            </div>
+
+        </div>
+    </section>
+
+    <section class="products-section" id="featured-products-section">
+            <div class="products-container">
+                
+                <h2 class="section-title" id="featured-products-heading">Nuestros Productos Destacados</h2>
+                
+                <div class="products-grid" id="products-showcase-grid">
+                    
+                    </div>
+
+            </div>
+    </section>
+
+</main>
+    
+    <footer class="main-footer" id="site-footer">
+        <div class="footer-container">
+            
+            <div class="footer-brand-area" id="footer-brand-block">
+                <span class="footer-site-name">HuertoHogar</span>
+                <div class="payment-methods" id="payment-gateways">
+                    <span class="card-badge" title="Visa">💳 Visa</span>
+                    <span class="card-badge" title="Mastercard">💳 Mastercard</span>
+                    <span class="card-badge" title="Redcompra / Transbank">💳 Webpay / Redcompra</span>
+                </div>
+            </div>
+            
+            <nav class="footer-nav-categories" id="footer-links-block">
+                <ul>
+                    <li><a href="src/components/tienda/productos.html?cat=frutas" class="footer-link" id="link-cat-x">Frutas Frescas</a></li>
+                    <li><a href="src/components/tienda/productos.html?cat=verduras" class="footer-link" id="link-cat-y">Verduras Orgánicas</a></li>
+                    <li><a href="src/components/tienda/productos.html?cat=otros" class="footer-link" id="link-cat-z">Productos del Campo</a></li>
+                </ul>
+            </nav>
+            
+            <div class="footer-newsletter-area" id="footer-subscribe-block">
+                <p class="newsletter-title">¡Mantente en contacto! Súmate a nuestro boletín.</p>
+                <form class="newsletter-form" id="form-newsletter" action="#" method="POST">
+                    <input type="email" name="user_email" class="input-newsletter" id="input-newsletter-email" placeholder="Correo electrónico" required>
+                    <button type="submit" class="btn-newsletter" id="btn-newsletter-submit">Suscribirse</button>
+                </form>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="src/js/validaciones.js" id="script-validations"></script>
+
+    <script src="src/js/main.js" id="script-main"></script>
+
 </body>
 </html>
