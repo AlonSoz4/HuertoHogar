@@ -1,0 +1,136 @@
+/* ==========================================================================
+   estilo ambos blogs
+   ========================================================================== */
+.article-main-wrapper {
+    background-color: var(--color-fondo-principal); /* #F7F7F7 */
+    padding: 60px 0;
+}
+
+/* Ancho controlado tipo columna de lectura cómoda */
+.article-detail-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    padding: 40px;
+    box-shadow: 6px 6px 0px var(--color-texto-principal);
+}
+
+/* Breadcrumbs de retorno */
+.article-breadcrumbs {
+    font-family: var(--fuente-principal);
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+    color: var(--color-texto-secundario);
+}
+.article-breadcrumbs a {
+    color: var(--color-marron-claro);
+    text-decoration: none;
+    font-weight: 700;
+}
+.article-breadcrumbs a:hover {
+    text-decoration: underline;
+}
+
+/* Encabezados Editoriales */
+.article-header {
+    margin-bottom: 30px;
+}
+
+.article-tag {
+    display: inline-block;
+    background-color: var(--color-primary); /* Verde Esmeralda */
+    color: var(--color-blanco);
+    font-family: var(--fuente-principal);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+}
+
+.article-main-title {
+    font-family: var(--fuente-header); /* Playfair Display */
+    color: var(--color-texto-principal);
+    font-size: 2.2rem;
+    line-height: 1.3;
+    margin: 0 0 10px 0;
+}
+
+.article-meta-info {
+    font-family: var(--fuente-principal);
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+}
+
+/* Imagen Destacada Principal */
+.article-featured-media {
+    width: 100%;
+    height: 380px;
+    border: 2px solid var(--color-texto-principal);
+    overflow: hidden;
+    margin-bottom: 35px;
+}
+
+.article-featured-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Cuerpo de Texto */
+.article-body-content {
+    font-family: var(--fuente-principal);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--color-texto-principal);
+}
+
+.article-lead {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--color-marron-claro); /* Resalta el inicio rústico */
+    margin-bottom: 25px;
+}
+
+.article-body-content p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.article-body-content h3 {
+    font-family: var(--fuente-header);
+    color: var(--color-texto-principal);
+    font-size: 1.5rem;
+    margin-top: 35px;
+    margin-bottom: 15px;
+}
+
+/* Acciones Inferiores */
+.article-footer-actions {
+    margin-top: 40px;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-return-blog {
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    padding: 10px 24px;
+    font-family: var(--fuente-principal);
+    font-weight: 700;
+    color: var(--color-texto-principal);
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: 4px 4px 0px var(--color-texto-principal);
+    transition: all 0.1s ease;
+}
+
+.btn-return-blog:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--color-texto-principal);
+}

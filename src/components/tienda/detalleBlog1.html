@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caso Curioso #1 - Huerto Hogar</title>
+
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Vinculación modular -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/detalleblog.css">
+</head>
+<body>
+
+    <!-- HEADER COMPARTIDO -->
+    <header class="main-header" id="site-header">
+        <div class="header-container">  
+            <div class="logo-area">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo HuertoHogar" class="site-logo" id="main-logo">
+                <span class="site-title" id="main-title">Huerto Hogar</span>
+            </div>
+            <nav class="main-nav" id="navigation-bar">
+                <ul id="nav-list">
+                    <li><a href="../../../index.html" class="nav-link" id="nav-home">Home</a></li>
+                    <li><a href="productos.html" class="nav-link" id="nav-products">Productos</a></li>
+                    <li><a href="nosotros.html" class="nav-link" id="nav-about">Nosotros</a></li>
+                    <li><a href="blog.html" class="nav-link active" id="nav-blogs">Blogs</a></li>
+                    <li><a href="contacto.html" class="nav-link" id="nav-contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="cart-area" id="cart-status-area">
+                <a href="carrito.html" id="cart-btn" class="cart-link">
+                    <span class="cart-icon" id="cart-ico">🛒</span> 
+                    <span class="cart-text" id="cart-text-label">Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BARRA DE SESIÓN SUPERIOR -->
+    <div class="session-bar" id="user-session-bar">
+        <div class="session-container">
+            <a href="login.html" class="session-link" id="link-login">Iniciar sesión</a>
+            <span class="session-divider" id="session-sep">|</span>
+            <a href="registro.html" class="session-link" id="link-register">Registrar usuario</a>
+        </div>
+    </div>
+
+    <!-- CONTENIDO EDITORIAL DE DETALLE -->
+    <main class="article-main-wrapper">
+        <article class="article-detail-container" id="editorial-block-1">
+            
+            <!-- Migas de pan de retorno rápido -->
+            <nav class="article-breadcrumbs">
+                <a href="blog.html">Regresar a Noticias</a> &gt; <span>Caso Curioso #1</span>
+            </nav>
+
+            <header class="article-header">
+                <span class="article-tag">Sostenibilidad</span>
+                <h1 class="article-main-title">CASO CURIOSO #1: El Impacto de la Agricultura Sostenible en el Valle del Maule</h1>
+                <div class="article-meta-info">
+                    <span>Por Equipo HuertoHogar</span> | <span>6 de Junio, 2026</span>
+                </div>
+            </header>
+
+            <!-- Imagen destacada requerida -->
+            <div class="article-featured-media">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Agricultura Sostenible">
+            </div>
+
+            <!-- Descripción larga (Libre elección enfocada en el caso) -->
+            <div class="article-body-content">
+                <p class="article-lead">
+                    ¿Sabías que la forma en que cultivamos nuestros alimentos afecta directamente la retención de nutrientes en la tierra? En nuestra constante búsqueda por conectar a las familias chilenas con el campo, hemos documentado cómo las prácticas orgánicas están transformando los suelos del Valle del Maule.
+                </p>
+                <p>
+                    A diferencia de la agricultura industrial intensiva, los pequeños productores locales con los que colaboramos en HuertoHogar utilizan técnicas de rotación de cultivos y abonos 100% naturales. Esto no solo elimina por completo el uso de pesticidas sintéticos en nuestras manzanas Fuji, sino que además permite que la tierra respire de forma saludable.
+                </p>
+                <h3>Beneficios directos en tu mesa</h3>
+                <p>
+                    Al respetar los ciclos naturales de maduración, las frutas y verduras orgánicas conservan un porcentaje significativamente mayor de antioxidantes, vitaminas y, sobre todo, ese sabor auténtico que evoca las cocinas de antaño. Consumir local disminuye drásticamente la huella de carbono derivada del transporte, garantizando que lo que compraste ayer fue cosechado hace solo unas pocas horas.
+                </p>
+            </div>
+
+            <footer class="article-footer-actions">
+                <a href="blog.html" class="btn-return-blog">Volver al listado</a>
+            </footer class="article-footer-actions">
+
+        </article>
+    </main>
+
+    <!-- FOOTER COMPARTIDO (Opción A) -->
+    <footer class="main-footer" id="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand-area" id="footer-brand-block">
+                <span class="footer-site-name">HuertoHogar</span>
+                <div class="payment-methods" id="payment-gateways">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/visa.svg" alt="Visa" class="card-logo">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/mastercard.svg" alt="Mastercard" class="card-logo">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/amex.svg" alt="American Express" class="card-logo">
+                </div>
+            </div>
+            <nav class="footer-nav-categories" id="footer-links-block">
+                <ul>
+                    <li><a href="nosotros.html" class="footer-link">Nuestra Historia</a></li>
+                    <li><a href="blog.html" class="footer-link">Blog y Consejos</a></li>
+                    <li><a href="contacto.html" class="footer-link">Soporte y Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="footer-newsletter-area" id="footer-subscribe-block">
+                <p class="newsletter-title">¡Mantente en contacto! Súmate a nuestro boletín.</p>
+                <form class="newsletter-form" id="form-newsletter" action="#" method="POST">
+                    <input type="email" name="user_email" class="input-newsletter" id="input-newsletter-email" placeholder="Correo electrónico" required>
+                    <button type="submit" class="btn-newsletter" id="btn-newsletter-submit">Suscribirse</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../js/validaciones.js" id="script-validations"></script>
+    <script src="../../js/main.js" id="script-main"></script>
+</body>
+</html>
