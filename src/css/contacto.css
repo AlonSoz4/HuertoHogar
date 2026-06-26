@@ -1,0 +1,141 @@
+/* ==========================================================================
+   PÁGINA DE CONTACTO - FILOSOFÍA MODULAR AISLADA
+   ========================================================================== */
+.contact-main-wrapper {
+    background-color: var(--color-fondo-principal); /* Blanco Suave */
+    padding: 50px 0;
+}
+
+.contact-container {
+    max-width: 650px; /* Caja controlada y centrada para formularios */
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Área de Identidad de Marca (Mockup de Contacto) */
+.contact-brand-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.contact-form-logo {
+    width: 120px;
+    height: auto;
+    border: 1px solid var(--color-texto-principal);
+}
+
+.contact-company-name {
+    font-family: var(--fuente-header); /* Playfair Display */
+    font-size: 2.2rem;
+    color: var(--color-texto-principal);
+    margin: 0;
+}
+
+/* Caja contenedora del Formulario */
+.contact-box-form {
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    box-shadow: 6px 6px 0px var(--color-texto-principal);
+}
+
+/* Barra superior gris del formulario según el plano visual */
+.form-title-bar {
+    background-color: #d8d8d8;
+    border-bottom: 2px solid var(--color-texto-principal);
+    padding: 12px 20px;
+    font-family: var(--fuente-principal);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-texto-principal);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Cuerpo interno del Formulario */
+.contact-form-body {
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-field-label {
+    font-family: var(--fuente-principal);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-texto-principal);
+    letter-spacing: 0.5px;
+}
+
+/* Inputs de texto estilo plano con bordes marcados */
+.form-field-input,
+.form-field-textarea {
+    width: 100%;
+    padding: 12px;
+    font-family: var(--fuente-principal);
+    font-size: 0.95rem;
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    color: var(--color-texto-principal);
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-field-textarea {
+    resize: vertical; /* Permite estirar solo hacia abajo */
+}
+
+/* Foco interactivo con tu verde corporativo */
+.form-field-input:focus,
+.form-field-textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: #fbfdfc;
+}
+
+/* Espacio dinámico para mensajes de error de JavaScript */
+.error-msg-field {
+    font-family: var(--fuente-principal);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #cc0000; /* Rojo de alerta estándar */
+    margin-top: 2px;
+    min-height: 15px; /* Evita saltos bruscos de layout si aparece el error */
+}
+
+/* Fila inferior para el botón centrado */
+.form-action-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Botón "ENVIAR MENSAJE" (Figura 7) */
+.btn-submit-contact {
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    padding: 12px 40px;
+    font-family: var(--fuente-principal);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--color-texto-principal);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-submit-contact:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--color-texto-principal);
+    background-color: var(--color-texto-principal);
+    color: var(--color-blanco);
+}

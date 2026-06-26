@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Huerto Hogar</title>
+
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Enlace doble: Base global primero, diseño de contacto abajo -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/contacto.css">
+</head>
+<body>
+
+    <!-- HEADER COMPARTIDO -->
+    <header class="main-header" id="site-header">
+        <div class="header-container">  
+            <div class="logo-area">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo HuertoHogar" class="site-logo" id="main-logo">
+                <span class="site-title" id="main-title">Huerto Hogar</span>
+            </div>
+            <nav class="main-nav" id="navigation-bar">
+                <ul id="nav-list">
+                    <li><a href="../../../index.html" class="nav-link" id="nav-home">Home</a></li>
+                    <li><a href="productos.html" class="nav-link" id="nav-products">Productos</a></li>
+                    <li><a href="nosotros.html" class="nav-link" id="nav-about">Nosotros</a></li>
+                    <li><a href="blog.html" class="nav-link" id="nav-blogs">Blogs</a></li>
+                    <li><a href="contacto.html" class="nav-link active" id="nav-contact">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="cart-area" id="cart-status-area">
+                <a href="carrito.html" id="cart-btn" class="cart-link">
+                    <span class="cart-icon" id="cart-ico">🛒</span> 
+                    <span class="cart-text" id="cart-text-label">Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- BARRA DE SESIÓN SUPERIOR -->
+    <div class="session-bar" id="user-session-bar">
+        <div class="session-container">
+            <a href="login.html" class="session-link" id="link-login">Iniciar sesión</a>
+            <span class="session-divider" id="session-sep">|</span>
+            <a href="registro.html" class="session-link" id="link-register">Registrar usuario</a>
+        </div>
+    </div>
+
+    <!-- NÚCLEO CENTRAL: FORMULARIO DE CONTACTO -->
+    <main class="contact-main-wrapper">
+        <div class="contact-container">
+            
+            <!-- Encabezado de marca superior exigido por el mockup de contacto -->
+            <div class="contact-brand-header">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo Corporativo" class="contact-form-logo">
+                <h1 class="contact-company-name">HuertoHogar</h1>
+            </div>
+
+            <!-- Contenedor del formulario con ID semántico para validaciones en tiempo real -->
+            <div class="contact-box-form">
+                <div class="form-title-bar">FORMULARIO DE CONTACTOS</div>
+                
+                <form id="form-internal-contact" class="contact-form-body" novalidate>
+                    
+                    <!-- Campo 1: Nombre Completo -->
+                    <div class="form-group-block">
+                        <label for="contact-name" class="form-field-label">NOMBRE COMPLETO</label>
+                        <input 
+                            type="text" 
+                            id="contact-name" 
+                            name="full_name" 
+                            class="form-field-input" 
+                            maxlength="100" 
+                            required
+                        >
+                        <!-- Contenedor dinámico para sugerencias o errores de JS -->
+                        <span class="error-msg-field" id="error-contact-name"></span>
+                    </div>
+
+                    <!-- Campo 2: Correo Electrónico -->
+                    <div class="form-group-block">
+                        <label for="contact-email" class="form-field-label">CORREO</label>
+                        <input 
+                            type="email" 
+                            id="contact-email" 
+                            name="user_email" 
+                            class="form-field-input" 
+                            maxlength="100" 
+                            placeholder="ejemplo@gmail.com o @inacap.cl"
+                            required
+                        >
+                        <span class="error-msg-field" id="error-contact-email"></span>
+                    </div>
+
+                    <!-- Campo 3: Contenido / Comentario -->
+                    <div class="form-group-block">
+                        <label for="contact-message" class="form-field-label">CONTENIDO</label>
+                        <textarea 
+                            id="contact-message" 
+                            name="message_content" 
+                            class="form-field-textarea" 
+                            maxlength="500" 
+                            rows="6" 
+                            required
+                        ></textarea>
+                        <span class="error-msg-field" id="error-contact-message"></span>
+                    </div>
+
+                    <!-- Botón oficial centrado exigido por la Figura 7 -->
+                    <div class="form-action-row">
+                        <button type="submit" class="btn-submit-contact" id="btn-contact-submit">ENVIAR MENSAJE</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER COMPARTIDO (Opción A) -->
+    <footer class="main-footer" id="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand-area" id="footer-brand-block">
+                <span class="footer-site-name">HuertoHogar</span>
+                <div class="payment-methods" id="payment-gateways">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/visa.svg" alt="Visa" class="card-logo">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/mastercard.svg" alt="Mastercard" class="card-logo">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/amex.svg" alt="American Express" class="card-logo">
+                </div>
+            </div>
+            <nav class="footer-nav-categories" id="footer-links-block">
+                <ul>
+                    <li><a href="nosotros.html" class="footer-link">Nuestra Historia</a></li>
+                    <li><a href="blog.html" class="footer-link">Blog y Consejos</a></li>
+                    <li><a href="contacto.html" class="footer-link">Soporte y Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="footer-newsletter-area" id="footer-subscribe-block">
+                <p class="newsletter-title">¡Mantente en contacto! Súmate a nuestro boletín.</p>
+                <form class="newsletter-form" id="form-newsletter" action="#" method="POST">
+                    <input type="email" name="user_email" class="input-newsletter" id="input-newsletter-email" placeholder="Correo electrónico" required>
+                    <button type="submit" class="btn-newsletter" id="btn-newsletter-submit">Suscribirse</button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Vinculación de tus archivos JavaScript principales -->
+    <script src="../../js/validaciones.js" id="script-validations"></script>
+    <script src="../../js/main.js" id="script-main"></script>
+</body>
+</html>
