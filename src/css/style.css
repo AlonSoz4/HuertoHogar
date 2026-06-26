@@ -1,0 +1,423 @@
+/* ==========================================================================
+   1. VARIABLES GLOBALES (Paleta Oficial de HuertoHogar según Anexo)
+   ========================================================================== */
+:root {
+    /* Paleta de Colores de la Marca en Español */
+    --color-fondo-principal: #F7F7F7; /* Blanco Suave: Fondo limpio de la página */
+    --color-principal: #2E8B57;       /* Verde Esmeralda: Botones, enlaces y elementos interactivos */
+    --color-acento: #FFD700;          /* Amarillo Mostaza: Ofertas, promociones y llamados de atención */
+    --color-titulo: #8B4513;          /* Marrón Claro: Títulos y subtítulos rústicos (tierra) */
+    
+    /* Colores para Textos y Detalles */
+    --color-texto-principal: #333333; /* Gris Oscuro: Contraste alto para lectura principal */
+    --color-texto-secundario: #666666;/* Gris Medio: Para descripciones de productos */
+    --color-blanco: #FFFFFF;           /* Blanco puro para el fondo de las cajas y header */
+    --color-borde: #E0E0E0;            /* Gris suave para líneas divisorias */
+
+    /* Tipografías Oficiales de Google Fonts */
+    --fuente-principal: 'Montserrat', sans-serif;
+    --fuente-titulos: 'Playfair Display', serif;
+}
+
+/* Reseteo Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo-principal);
+    color: var(--color-texto-principal);
+    line-height: 1.6;
+}
+
+/* Contenedor estándar para centrar el contenido (Máximo 1200px) */
+.header-container, 
+.session-container, 
+.hero-container, 
+.products-container, 
+.footer-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   2. SECCIÓN 1: HEADER PRINCIPAL (Logo, Menú y Carrito)
+   ========================================================================== */
+.main-header {
+    background-color: var(--color-blanco);
+    border-bottom: 1px solid var(--color-borde);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-header .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Bloque Izquierdo: Identidad de la Empresa */
+.main-header .header-container > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.site-logo {
+    height: 50px;       /* Mantiene un alto fijo y controlado en la cabecera */
+    width: auto;        /* El ancho se calcula automáticamente para no deformar la imagen */
+    border-radius: 0;   /* Eliminamos por completo el recorte circular */
+    object-fit: contain;/* Asegura que toda la imagen quepa dentro de la caja sin recortarse */
+}
+
+.site-title {
+    font-family: var(--fuente-titulos);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-titulo); /* Marrón Claro oficial */
+}
+
+/* Bloque Central: Menú de Navegación Horizontal */
+.main-nav #nav-list {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+.nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-texto-secundario); /* Gris Medio */
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover, 
+.nav-link.active {
+    color: var(--color-principal); /* Verde Esmeralda cambia con hover o activo */
+    border-bottom-color: var(--color-principal);
+}
+
+/* Bloque Derecho: Estado del Carrito de Compra */
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--color-fondo-principal);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: 1px solid var(--color-borde);
+}
+
+.cart-link:hover {
+    background-color: var(--color-principal); /* Fondo Verde Esmeralda al pasar mouse */
+    color: var(--color-blanco);
+    border-color: var(--color-principal);
+}
+
+/* ==========================================================================
+   3. SECCIÓN 2: BARRA DE SESIÓN (Login y Registro)
+   ========================================================================== */
+.session-bar {
+    background-color: var(--color-principal); /* Fondo Verde Esmeralda corporativo */
+    color: var(--color-blanco);
+    font-size: 0.85rem;
+    padding: 8px 0;
+}
+
+.session-bar .session-container {
+    display: flex;
+    justify-content: flex-end; /* Alineados a la derecha según el dibujo */
+    gap: 16px;
+}
+
+.session-link {
+    font-weight: 500;
+}
+
+.session-link:hover {
+    color: var(--color-acento); /* Destaca en Amarillo Mostaza */
+}
+
+.session-divider {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   4. SECCIÓN 3: BANNER PRINCIPAL / HERO (Presentación de la Tienda)
+   ========================================================================== */
+.hero-section {
+    background-color: var(--color-fondo-principal); /* Blanco Suave (#F7F7F7) según anexo */
+    padding: 60px 0;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.hero-section .hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px; /* Separación entre la columna de texto y la de la imagen */
+}
+
+/* Columna Izquierda: Textos y Acción */
+.hero-content {
+    flex: 1; /* Toma el 50% del ancho de manera equitativa */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hero-title {
+    font-family: var(--fuente-titulos); /* Playfair Display */
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--color-titulo); /* Marrón Claro (#8B4513) oficial */
+    line-height: 1.2;
+}
+
+.hero-description {
+    font-family: var(--fuente-principal); /* Montserrat */
+    font-size: 1rem;
+    color: var(--color-texto-principal); /* Gris Oscuro (#333333) para alta legibilidad */
+    text-align: justify; /* Mantiene el texto ordenado en bloque */
+}
+
+/* Botón "ver productos" */
+.hero-actions .btn-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--color-blanco);
+    color: var(--color-texto-principal);
+    font-family: var(--fuente-principal);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: lowercase; /* Mantiene el texto en minúscula tal como sale en tu dibujo */
+    padding: 12px 28px;
+    border: 2px solid var(--color-texto-principal); /* Borde negro/oscuro grueso según mockup */
+    cursor: pointer;
+    box-shadow: 3px 3px 0px var(--color-texto-principal); /* Efecto de sombra sólida retro del dibujo */
+    transition: all 0.2s ease;
+}
+
+.hero-actions .btn-hero:hover {
+    background-color: var(--color-acento); /* Amarillo Mostaza de alta visibilidad */
+    color: var(--color-texto-principal);
+    border-color: var(--color-texto-principal);
+    /* En vez de borrarse, la sombra se hace más grande simulando que el botón flota */
+    box-shadow: 6px 6px 0px var(--color-texto-principal); 
+    /* El valor negativo en 'Y' hace que el botón suba físicamente */
+    transform: translate(-3px, -3px); 
+}
+
+/* Columna Derecha: Imagen Ilustrativa (El cuadro con la X del dibujo) */
+.hero-media {
+    flex: 1; /* Toma el otro 50% del ancho */
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 500px;
+    height: 350px;
+    object-fit: cover;
+    border: 2px solid var(--color-texto-principal); /* Enmarca la imagen como en el plano */
+    box-shadow: 6px 6px 0px var(--color-borde);
+}
+
+/* ==========================================================================
+   5. SECCIÓN 4: PRODUCTOS DESTACADOS (Estructura de la Grilla)
+   ========================================================================== */
+.products-section {
+    background-color: #FFFFFF; /* Fondo blanco para que contrasten las tarjetas según el plano */
+    padding: 60px 0;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.products-section .products-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Espacio entre el título principal y la cuadrícula de productos */
+}
+
+/* Título de la Sección */
+#featured-products-heading {
+    font-family: var(--fuente-titulos); /* Playfair Display */
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-titulo); /* Marrón Claro (#8B4513) oficial */
+    text-align: center; /* Centrado como en los mockups estándar */
+    position: relative;
+}
+
+/* Grilla Responsiva usando CSS Grid */
+.products-grid {
+    display: grid;
+    /* Crea columnas automáticas de mínimo 250px. Si no caben 4, se acomodan solas a 3, 2 o 1 */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px; /* Espacio horizontal y vertical entre cada tarjeta de producto */
+    width: 100%;
+}
+
+/* Base de las Tarjetas de Productos (Para cuando JavaScript las inyecte) */
+.product-card {
+    background-color: var(--color-fondo-principal); /* Blanco Suave (#F7F7F7) de fondo */
+    border: 2px solid var(--color-texto-principal); /* Borde marcado siguiendo la estética del plano */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Pequeño levante al pasar el cursor */
+    box-shadow: 4px 4px 0px var(--color-primary); /* Sombra sólida en el Verde Esmeralda oficial */
+}
+
+/* ==========================================================================
+   6. SECCIÓN 5: FOOTER / PIE DE PÁGINA (Enlaces, Medios de Pago y Boletín)
+   ========================================================================== */
+.main-footer {
+    background-color: var(--color-blanco);
+    border-top: 2px solid var(--color-texto-principal); /* Línea gruesa divisoria según el plano */
+    padding: 40px 0;
+    font-family: var(--fuente-principal); /* Montserrat */
+}
+
+.main-footer .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Permite que las columnas se acomoden si la pantalla es más chica */
+    gap: 30px;
+}
+
+/* Columna Izquierda: Marca y Métodos de Pago chilenos */
+.footer-brand-area {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-site-name {
+    font-family: var(--fuente-titulos); /* Playfair Display */
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-titulo); /* Marrón Claro oficial */
+}
+
+.payment-methods {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.card-logo {
+    height: 30px; /* Tamaño controlado y sutil para el pie de página */
+    width: auto;
+    filter: grayscale(20%); /* Les da un toque sutil para que combinen con el diseño */
+    transition: filter 0.3s ease, transform 0.2s ease;
+}
+
+.card-logo:hover {
+    filter: grayscale(0%); /* Se iluminan a sus colores originales al pasar el mouse */
+    transform: scale(1.05); /* Pequeño efecto de zoom interactivo */
+}
+
+/* Columna Central: Enlaces de Categorías Rápidas */
+.footer-nav-categories {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-nav-categories ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-link {
+    font-size: 0.95rem;
+    color: var(--color-texto-secundario); /* Gris Medio */
+    font-weight: 500;
+}
+
+.footer-link:hover {
+    color: var(--color-primary); /* Verde Esmeralda al pasar el cursor */
+    padding-left: 5px; /* Pequeño desplazamiento estético al hacer hover */
+}
+
+/* Columna Derecha: Formulario de Suscripción (Newsletter) */
+.footer-newsletter-area {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1.5;
+    min-width: 300px;
+}
+
+.newsletter-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-texto-principal); /* Gris Oscuro */
+}
+
+.newsletter-form {
+    display: flex;
+    width: 100%;
+}
+
+.input-newsletter {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--color-texto-principal);
+    border-right: none; /* Elimina el borde derecho para conectarse con el botón */
+    font-family: var(--fuente-principal);
+    font-size: 0.9rem;
+    background-color: var(--color-fondo-principal);
+    color: var(--color-texto-principal);
+    outline: none;
+}
+
+.input-newsletter:focus {
+    background-color: var(--color-blanco);
+    border-color: var(--color-primary); /* Se ilumina en Verde Esmeralda al escribir */
+}
+
+/* Botón "Suscribirse" */
+.btn-newsletter {
+    background-color: var(--color-texto-principal);
+    color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    padding: 0 24px;
+    font-family: var(--fuente-principal);
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-newsletter:hover {
+    background-color: var(--color-primary); /* Cambia a Verde Esmeralda corporativo */
+    border-color: var(--color-primary);
+}
