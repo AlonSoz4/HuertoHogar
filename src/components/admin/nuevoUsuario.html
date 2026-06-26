@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuevo Usuario - Huerto Hogar</title>
-
     <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +13,6 @@
     <link rel="stylesheet" href="../../css/auth.css">
 </head>
 <body>
-
     <div class="admin-layout-wrapper">
         
         <aside class="admin-sidebar" id="sidebar-menu">
@@ -30,7 +28,6 @@
                 </ul>
             </nav>
         </aside>
-
         <div class="admin-main-content">
             <main class="admin-dashboard-view">
                 
@@ -45,7 +42,6 @@
                                 <input type="text" id="user-run" class="auth-field-input" placeholder="Ej: 19011022K" minlength="7" maxlength="9" required>
                                 <span class="error-msg-field" id="error-user-run"></span>
                             </div>
-
                             <div class="auth-group-block">
                                 <label for="user-role" class="auth-field-label">TIPO DE USUARIO (ROL)</label>
                                 <select id="user-role" class="auth-field-select" required>
@@ -56,25 +52,21 @@
                                 </select>
                                 <span class="error-msg-field" id="error-user-role"></span>
                             </div>
-
                             <div class="auth-group-block">
                                 <label for="user-name" class="auth-field-label">NOMBRE</label>
                                 <input type="text" id="user-name" class="auth-field-input" maxlength="50" required>
                                 <span class="error-msg-field" id="error-user-name"></span>
                             </div>
-
                             <div class="auth-group-block">
                                 <label for="user-lastname" class="auth-field-label">APELLIDOS</label>
                                 <input type="text" id="user-lastname" class="auth-field-input" maxlength="100" required>
                                 <span class="error-msg-field" id="error-user-lastname"></span>
                             </div>
-
                             <div class="auth-group-block grid-full-width">
                                 <label for="user-email" class="auth-field-label">CORREO ELECTRÓNICO</label>
                                 <input type="email" id="user-email" class="auth-field-input" maxlength="100" required>
                                 <span class="error-msg-field" id="error-user-email"></span>
                             </div>
-
                             <div class="auth-group-block">
                                 <label for="user-region" class="auth-field-label">REGIÓN</label>
                                 <select id="user-region" class="auth-field-select" required>
@@ -82,7 +74,6 @@
                                 </select>
                                 <span class="error-msg-field" id="error-user-region"></span>
                             </div>
-
                             <div class="auth-group-block">
                                 <label for="user-comuna" class="auth-field-label">COMUNA</label>
                                 <select id="user-comuna" class="auth-field-select" required>
@@ -91,21 +82,16 @@
                                 <span class="error-msg-field" id="error-user-comuna"></span>
                             </div>
 
-
-
                             <div class="auth-action-row grid-full-width" style="justify-content: flex-start; gap: 15px;">
                                 <button type="submit" class="btn-submit-auth" style="background-color: var(--color-primary); color:white; border-color:var(--color-primary);">CREAR</button>
                                 <a href="usuariosAdmin.html" class="btn-submit-auth" style="text-decoration:none; text-align:center; background-color:#e2e3e5; color:#333; border-color:#d8d8d8;">VOLVER</a>
                             </div>
-
                         </form>
                     </div>
                 </div>
-
             </main>
         </div>
     </div>
-
     <script src="../../js/main.js"></script>
 </body>
 </html>

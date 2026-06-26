@@ -1,81 +1,62 @@
 // ==========================================================================
 /* INTERACTIVIDAD DEL MAPA DE SUCURSALES (PÁGINA NOSOTROS) */
 // ==========================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    const mapContainer = document.getElementById("interactive-store-map");
-    const buttons = document.querySelectorAll(".city-btn");
-
-    // Validamos que los elementos existan en la página actual (evita errores en el Home o Productos)
-    if (mapContainer && buttons.length > 0) {
-        buttons.forEach(button => {
-            button.addEventListener("click", () => {
-                // 1. Quitar la clase activa de todos los botones y ponérsela al clickeado
-                buttons.forEach(btn => btn.classList.remove("active"));
-                button.classList.add("active");
-
-                // 2. Obtener el nombre de la ciudad del atributo data
-                const targetLocation = button.getAttribute("data-location");
-                
-                // 3. Codificar la ubicación para la URL de Google Maps de forma segura
-                const encodedLocation = encodeURIComponent(targetLocation);
-                
-                // 4. Actualizar el origen del iframe con la nueva ubicación y un zoom alto (z=14)
-                mapContainer.src = `https://maps.google.com/maps?q=${encodedLocation}&t=&z=14&ie=UTF8&iwloc=&output=embed`;
+function initStoreMap() {
+    const mapContainer = document.getElementById("interactive-store-map"); // [cite: 5]
+    const buttons = document.querySelectorAll(".city-btn"); // [cite: 6]
+    
+    if (mapContainer && buttons.length > 0) { // [cite: 8]
+        buttons.forEach(button => { // [cite: 9]
+            button.addEventListener("click", () => { // [cite: 10]
+                buttons.forEach(btn => btn.classList.remove("active")); // [cite: 12]
+                button.classList.add("active"); // [cite: 13]
+                const targetLocation = button.getAttribute("data-location"); // [cite: 15]
+                const encodedLocation = encodeURIComponent(targetLocation); // [cite: 17]
+                mapContainer.src = `https://maps.google.com/maps?q=$${encodedLocation}&t=&z=14&ie=UTF8&iwloc=&output=embed`; // [cite: 19]
             });
         });
     }
-});
+}
 
 // ==========================================================================
 /* GESTIÓN DINÁMICA DEL MANTENEDOR DE PRODUCTOS (productosAdmin.html) */
 // ==========================================================================
-
-// 1. Catálogo inicial basado exactamente en el documento oficial "Forma A"
-const initialProducts = [
-    { code: "FR001", category: "Frutas Frescas", name: "Manzanas Fuji", price: 1200, stock: 150 },
-    { code: "FR002", category: "Frutas Frescas", name: "Naranjas Valencia", price: 1000, stock: 200 },
-    { code: "FR003", category: "Frutas Frescas", name: "Plátanos Cavendish", price: 800, stock: 250 },
-    { code: "VR001", category: "Verduras Orgánicas", name: "Zanahorias Orgánicas", price: 900, stock: 100 },
-    { code: "VR002", category: "Verduras Orgánicas", name: "Espinacas Frescas (500g)", price: 700, stock: 80 },
-    { code: "VR003", category: "Verduras Orgánicas", name: "Pimientos Tricolores", price: 1500, stock: 120 },
-    { code: "PO001", category: "Productos Orgánicos", name: "Miel Orgánica (500g)", price: 5000, stock: 50 },
-    { code: "PO003", category: "Productos Orgánicos", name: "Quinua Orgánica", price: 2400, stock: 90 },
-    { code: "PL001", category: "Productos Lácteos", name: "Leche Entera", price: 1100, stock: 110 }
+const initialProducts = [ // [cite: 28]
+    { code: "FR001", category: "Frutas Frescas", name: "Manzanas Fuji", price: 1200, stock: 150 }, // [cite: 29]
+    { code: "FR002", category: "Frutas Frescas", name: "Naranjas Valencia", price: 1000, stock: 200 }, // [cite: 30]
+    { code: "FR003", category: "Frutas Frescas", name: "Plátanos Cavendish", price: 800, stock: 250 }, // [cite: 31]
+    { code: "VR001", category: "Verduras Orgánicas", name: "Zanahorias Orgánicas", price: 900, stock: 100 }, // [cite: 32]
+    { code: "VR002", category: "Verduras Orgánicas", name: "Espinacas Frescas (500g)", price: 700, stock: 80 }, // [cite: 33]
+    { code: "VR003", category: "Verduras Orgánicas", name: "Pimientos Tricolores", price: 1500, stock: 120 }, // [cite: 34]
+    { code: "PO001", category: "Productos Orgánicos", name: "Miel Orgánica (500g)", price: 5000, stock: 50 }, // [cite: 35]
+    { code: "PO003", category: "Productos Orgánicos", name: "Quinua Orgánica", price: 2400, stock: 90 }, // [cite: 36]
+    { code: "PL001", category: "Productos Lácteos", name: "Leche Entera", price: 1100, stock: 110 } // [cite: 37]
 ];
 
-// 2. Función para cargar o inicializar el LocalStorage de manera segura
-function getStoredProducts() {
-    const stored = localStorage.getItem("huerto_products_catalog");
-    if (!stored) {
-        // Si no existe en LocalStorage, montamos los 9 productos base por primera vez
-        localStorage.setItem("huerto_products_catalog", JSON.stringify(initialProducts));
-        return initialProducts;
+function getStoredProducts() { // [cite: 40]
+    const stored = localStorage.getItem("huerto_products_catalog"); // [cite: 41]
+    if (!stored) { // [cite: 42]
+        localStorage.setItem("huerto_products_catalog", JSON.stringify(initialProducts)); // [cite: 44]
+        return initialProducts; // [cite: 45]
     }
-    return JSON.stringify(stored) ? JSON.parse(stored) : initialProducts;
+    return JSON.parse(stored); // [cite: 47]
 }
 
-// 3. Función para renderizar dinámicamente la tabla en el panel del Administrador
-function renderAdminProductsTable() {
-    const tableBody = document.getElementById("admin-products-table-body");
-    if (!tableBody) return; // Evita errores si se ejecuta en páginas de la tienda
-
-    const products = getStoredProducts();
-    tableBody.innerHTML = ""; // Limpiamos la tabla para refrescar
-
-    if (products.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px;">No hay productos en el inventario.</td></tr>`;
-        return;
+function renderAdminProductsTable() { // [cite: 50]
+    const tableBody = document.getElementById("admin-products-table-body"); // [cite: 51]
+    if (!tableBody) return; // [cite: 52]
+    const products = getStoredProducts(); // [cite: 53]
+    tableBody.innerHTML = ""; // [cite: 54]
+    if (products.length === 0) { // [cite: 55]
+        tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px;">No hay productos en el inventario.</td></tr>`; // [cite: 56]
+        return; // [cite: 57]
     }
-
-    products.forEach(product => {
-        const row = document.createElement("tr");
-
-        // Asignamos estilos de colores de badges según la categoría de la pauta
-        let catClass = "badge-cat";
-        if (product.category.includes("Verduras")) catClass += " badge-green";
-        if (product.category.includes("Orgánicos")) catClass += " badge-brown";
-        if (product.category.includes("Lácteos")) catClass += " badge-blue";
-
+    products.forEach(product => { // [cite: 59]
+        const row = document.createElement("tr"); // [cite: 60]
+        let catClass = "badge-cat"; // [cite: 62]
+        if (product.category.includes("Verduras")) catClass += " badge-green"; // [cite: 63]
+        if (product.category.includes("Orgánicos")) catClass += " badge-brown"; // [cite: 64]
+        if (product.category.includes("Lácteos")) catClass += " badge-blue"; // [cite: 65]
         row.innerHTML = `
             <td class="text-bold">${product.code}</td>
             <td><span class="${catClass}">${product.category}</span></td>
@@ -84,8 +65,187 @@ function renderAdminProductsTable() {
             <td>${product.stock}</td>
             <td>
                 <div class="table-actions-group">
-                    <a href="editarProducto.html?code=${product.code}" class="btn-table-edit" title="Editar">✏️</a>
-                    <button type="button" class="btn-table-delete" onclick="deleteProductFromAdmin('${product.code}')" title="Eliminar">🗑️</button>
+                    <a href="editarProducto.html?code=${product.code}" class="btn-table-edit" title="Editar"> ✏️ </a>
+                    <button type="button" class="btn-table-delete" onclick="deleteProductFromAdmin('${product.code}')" title="Eliminar"> 🗑️ </button>
+                </div>
+            </td>
+        `; // [cite: 66]
+        tableBody.appendChild(row); // [cite: 79]
+    });
+}
+
+window.deleteProductFromAdmin = (code) => { // [cite: 83]
+    if (confirm(`¿Está seguro de que desea eliminar el producto con código ${code}?`)) { // [cite: 84]
+        let products = getStoredProducts(); // [cite: 85]
+        products = products.filter(p => p.code !== code); // [cite: 87]
+        localStorage.setItem("huerto_products_catalog", JSON.stringify(products)); // [cite: 89]
+        renderAdminProductsTable(); // [cite: 91]
+    }
+};
+
+// ==========================================================================
+/* PROCESAMIENTO Y VALIDACIÓN DE NUEVOS PRODUCTOS (nuevoProducto.html) */
+// ==========================================================================
+function initAddProductPage() {
+    const addProductForm = document.getElementById("form-admin-add-product"); // [cite: 102]
+    if (!addProductForm) return;
+
+    addProductForm.addEventListener("submit", (e) => { // [cite: 104]
+        e.preventDefault(); // [cite: 105]
+        const codeIn = document.getElementById("prod-code"); // [cite: 107]
+        const catIn = document.getElementById("prod-category"); // [cite: 108]
+        const nameIn = document.getElementById("prod-name"); // [cite: 109]
+        const priceIn = document.getElementById("prod-price"); // [cite: 110]
+        const stockIn = document.getElementById("prod-stock"); // [cite: 111]
+        const descIn = document.getElementById("prod-desc"); // [cite: 112]
+
+        const errCode = document.getElementById("error-prod-code"); // [cite: 114]
+        const errCat = document.getElementById("error-prod-category"); // [cite: 115]
+        const errName = document.getElementById("error-prod-name"); // [cite: 116]
+        const errPrice = document.getElementById("error-prod-price"); // [cite: 117]
+        const errStock = document.getElementById("error-prod-stock"); // [cite: 118]
+
+        [errCode, errCat, errName, errPrice, errStock].forEach(el => el.textContent = ""); // [cite: 120]
+        let isValid = true; // [cite: 121]
+        const currentCatalog = getStoredProducts(); // [cite: 122]
+
+        const codeVal = codeIn.value.trim().toUpperCase(); // [cite: 124]
+        if (!codeVal) { errCode.textContent = "El código es obligatorio."; isValid = false; } // [cite: 125, 127]
+        else if (codeVal.length < 3) { errCode.textContent = "Mínimo 3 caracteres."; isValid = false; } // [cite: 128, 130]
+        else if (currentCatalog.some(p => p.code === codeVal)) { errCode.textContent = "Este código ya está registrado."; isValid = false; } // [cite: 131, 133]
+
+        if (!catIn.value) { errCat.textContent = "Debe seleccionar una categoría."; isValid = false; } // [cite: 136, 138]
+        if (!nameIn.value.trim()) { errName.textContent = "El nombre es obligatorio."; isValid = false; } // [cite: 142, 144]
+
+        const priceVal = parseFloat(priceIn.value); // [cite: 147]
+        if (isNaN(priceVal) || priceVal < 0) { errPrice.textContent = "Precio inválido (Mínimo 0)."; isValid = false; } // [cite: 148, 150]
+
+        const stockVal = parseInt(stockIn.value, 10); // [cite: 153]
+        if (isNaN(stockVal) || stockVal < 0) { errStock.textContent = "Stock inválido (Mínimo 0)."; isValid = false; } // [cite: 154, 156]
+
+        if (isValid) { // [cite: 159]
+            const newProduct = { // [cite: 160]
+                code: codeVal, // [cite: 161]
+                category: catIn.value, // [cite: 162]
+                name: nameVal, // [cite: 163]
+                price: priceVal, // [cite: 164]
+                stock: stockVal, // [cite: 165]
+                description: descIn.value.trim() // [cite: 166]
+            };
+            currentCatalog.push(newProduct); // [cite: 168]
+            localStorage.setItem("huerto_products_catalog", JSON.stringify(currentCatalog)); // [cite: 169]
+            alert("¡Producto agregado exitosamente al catálogo!"); // [cite: 170]
+            window.location.href = "productosAdmin.html"; // [cite: 171]
+        }
+    });
+}
+
+// ==========================================================================
+/* EDICIÓN Y ACTUALIZACIÓN DE PRODUCTOS EXISTENTES (editarProducto.html) */
+// ==========================================================================
+function initEditProductPage() {
+    const editForm = document.getElementById("form-admin-edit-product"); // [cite: 180]
+    if (!editForm) return; // [cite: 181]
+    const urlParams = new URLSearchParams(window.location.search); // [cite: 183]
+    const productCode = urlParams.get("code"); // [cite: 184]
+    if (!productCode) { // [cite: 185]
+        alert("Código de producto no especificado."); // [cite: 186]
+        window.location.href = "productosAdmin.html"; // [cite: 187]
+        return; // [cite: 188]
+    }
+    const catalog = getStoredProducts(); // [cite: 191]
+    const product = catalog.find(p => p.code === productCode); // [cite: 192]
+    if (!product) { // [cite: 193]
+        alert("El producto especificado no existe en el catálogo."); // [cite: 194]
+        window.location.href = "productosAdmin.html"; // [cite: 195]
+        return; // [cite: 196]
+    }
+    document.getElementById("edit-form-title").textContent = `Modificar Producto: ${product.code}`; // [cite: 199]
+    document.getElementById("edit-prod-code").value = product.code; // [cite: 200]
+    document.getElementById("edit-prod-category").value = product.category; // [cite: 201]
+    document.getElementById("edit-prod-name").value = product.name; // [cite: 202]
+    document.getElementById("edit-prod-price").value = product.price; // [cite: 203]
+    document.getElementById("edit-prod-stock").value = product.stock; // [cite: 204]
+    document.getElementById("edit-prod-desc").value = product.description || ""; // [cite: 205]
+
+    editForm.addEventListener("submit", (e) => { // [cite: 207]
+        e.preventDefault(); // [cite: 208]
+        const nameIn = document.getElementById("edit-prod-name"); // [cite: 210]
+        const catIn = document.getElementById("edit-prod-category"); // [cite: 211]
+        const priceIn = document.getElementById("edit-prod-price"); // [cite: 212]
+        const stockIn = document.getElementById("edit-prod-stock"); // [cite: 213]
+        const descIn = document.getElementById("edit-prod-desc"); // [cite: 214]
+
+        const errName = document.getElementById("error-edit-name"); // [cite: 216]
+        const errCat = document.getElementById("error-edit-cat"); // [cite: 217]
+        const errPrice = document.getElementById("error-edit-price"); // [cite: 218]
+        const errStock = document.getElementById("error-edit-stock"); // [cite: 219]
+
+        [errName, errCat, errPrice, errStock].forEach(el => el.textContent = ""); // [cite: 221]
+        let isValid = true; // [cite: 222]
+        if (!catIn.value) { errCat.textContent = "Debe seleccionar una categoría."; isValid = false; } // [cite: 224]
+        if (!nameIn.value.trim()) { errName.textContent = "El nombre es obligatorio."; isValid = false; } // [cite: 225]
+        const priceVal = parseFloat(priceIn.value); // [cite: 226]
+        if (isNaN(priceVal) || priceVal < 0) { errPrice.textContent = "Precio inválido."; isValid = false; } // [cite: 227]
+        const stockVal = parseInt(stockIn.value, 10); // [cite: 228]
+        if (isNaN(stockVal) || stockVal < 0) { errStock.textContent = "Stock inválido."; isValid = false; } // [cite: 229]
+        if (isValid) { // [cite: 230]
+            product.category = catIn.value; // [cite: 232]
+            product.name = nameIn.value.trim(); // [cite: 233]
+            product.price = priceVal; // [cite: 234]
+            product.stock = stockVal; // [cite: 235]
+            product.description = descIn.value.trim(); // [cite: 236]
+            localStorage.setItem("huerto_products_catalog", JSON.stringify(catalog)); // [cite: 238]
+            alert("¡Producto actualizado exitosamente!"); // [cite: 239]
+            window.location.href = "productosAdmin.html"; // [cite: 240]
+        }
+    });
+}
+
+// ==========================================================================
+/* GESTIÓN MANTENEDOR DE USUARIOS COMPARTIDO (usuariosAdmin.html) */
+// ==========================================================================
+const initialUsers = [
+    { run: "19011022K", name: "Administrador", lastname: "Huerto Hogar", email: "admin@inacap.cl", role: "Administrador", region: "Región Metropolitana", comuna: "Santiago" },
+    { run: "154432218", name: "Carlos", lastname: "Mendoza Silva", email: "carlos@gmail.com", role: "Vendedor", region: "Región de la Araucanía", comuna: "Villarrica" },
+    { run: "213349902", name: "María José", lastname: "Fuenzalida Oliva", email: "mariajose@profesor.inacap.cl", role: "Cliente", region: "Región Metropolitana", comuna: "Santiago" }
+];
+
+function getStoredUsers() { // [cite: 434]
+    const stored = localStorage.getItem("huerto_users_catalog"); // [cite: 434]
+    if (!stored) {
+        localStorage.setItem("huerto_users_catalog", JSON.stringify(initialUsers));
+        return initialUsers;
+    }
+    return JSON.parse(stored); // [cite: 434]
+}
+
+function renderAdminUsersTable() {
+    const tableBody = document.getElementById("admin-users-table-body");
+    if (!tableBody) return;
+    const users = getStoredUsers();
+    tableBody.innerHTML = "";
+    if (users.length === 0) {
+        tableBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding:20px;">No hay usuarios en el registro.</td></tr>`;
+        return;
+    }
+    users.forEach(user => {
+        const row = document.createElement("tr");
+        let roleClass = "badge-cat";
+        if (user.role === "Administrador") roleClass += " badge-brown";
+        if (user.role === "Vendedor") roleClass += " badge-blue";
+        if (user.role === "Cliente") roleClass += " badge-green";
+        
+        row.innerHTML = `
+            <td class="text-bold">${user.run}</td>
+            <td>${user.name} ${user.lastname}</td>
+            <td>${user.email}</td>
+            <td><span class="${roleClass}">${user.role}</span></td>
+            <td>${user.comuna}, ${user.region}</td>
+            <td>
+                <div class="table-actions-group">
+                    <a href="editarUsuario.html?run=${user.run}" class="btn-table-edit" title="Editar"> ✏️ </a>
+                    <button type="button" class="btn-table-delete" onclick="deleteUserFromAdmin('${user.run}')" title="Eliminar"> 🗑️ </button>
                 </div>
             </td>
         `;
@@ -93,479 +253,231 @@ function renderAdminProductsTable() {
     });
 }
 
-// 4. Función interactiva para eliminar un producto del arreglo de LocalStorage
-window.deleteProductFromAdmin = (code) => {
-    if (confirm(`¿Está seguro de que desea eliminar el producto con código ${code}?`)) {
-        let products = getStoredProducts();
-        // Filtramos el arreglo para remover el producto seleccionado
-        products = products.filter(p => p.code !== code);
-        
-        // Guardamos el nuevo arreglo modificado en LocalStorage
-        localStorage.setItem("huerto_products_catalog", JSON.stringify(products));
-        
-        // Refrescamos la tabla automáticamente en la pantalla
-        renderAdminProductsTable();
+window.deleteUserFromAdmin = (run) => {
+    if (run === "19011022K") {
+        alert("No se puede eliminar el administrador principal.");
+        return;
+    }
+    if (confirm(`¿Está seguro de que desea eliminar al usuario con RUN ${run}?`)) {
+        let users = getStoredUsers();
+        users = users.filter(u => u.run !== run);
+        localStorage.setItem("huerto_users_catalog", JSON.stringify(users));
+        renderAdminUsersTable();
     }
 };
-
-// Inicializamos la ejecución cuando la página termine de cargar
-document.addEventListener("DOMContentLoaded", () => {
-    renderAdminProductsTable();
-});
-
-// ==========================================================================
-/* PROCESAMIENTO Y VALIDACIÓN DE NUEVOS PRODUCTOS (nuevoProducto.html) */
-// ==========================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    const addProductForm = document.getElementById("form-admin-add-product");
-
-    if (addProductForm) {
-        addProductForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            // Elementos
-            const codeIn = document.getElementById("prod-code");
-            const catIn = document.getElementById("prod-category");
-            const nameIn = document.getElementById("prod-name");
-            const priceIn = document.getElementById("prod-price");
-            const stockIn = document.getElementById("prod-stock");
-            const descIn = document.getElementById("prod-desc");
-
-            // Contenedores de Error
-            const errCode = document.getElementById("error-prod-code");
-            const errCat = document.getElementById("error-prod-category");
-            const errName = document.getElementById("error-prod-name");
-            const errPrice = document.getElementById("error-prod-price");
-            const errStock = document.getElementById("error-prod-stock");
-
-            // Limpieza inicial
-            [errCode, errCat, errName, errPrice, errStock].forEach(el => el.textContent = "");
-
-            let isValid = true;
-            const currentCatalog = getStoredProducts();
-
-            // 1. Validación Código (Requerido, Min 3, Único)
-            const codeVal = codeIn.value.trim().toUpperCase();
-            if (!codeVal) {
-                errCode.textContent = "El código es obligatorio.";
-                isValid = false;
-            } else if (codeVal.length < 3) {
-                errCode.textContent = "Mínimo 3 caracteres.";
-                isValid = false;
-            } else if (currentCatalog.some(p => p.code === codeVal)) {
-                errCode.textContent = "Este código ya está registrado.";
-                isValid = false;
-            }
-
-            // 2. Validación Categoría
-            if (!catIn.value) {
-                errCat.textContent = "Debe seleccionar una categoría.";
-                isValid = false;
-            }
-
-            // 3. Validación Nombre (Requerido, Max 100)
-            const nameVal = nameIn.value.trim();
-            if (!nameVal) {
-                errName.textContent = "El nombre es obligatorio.";
-                isValid = false;
-            }
-
-            // 4. Validación Precio (Requerido, >= 0)
-            const priceVal = parseFloat(priceIn.value);
-            if (isNaN(priceVal) || priceVal < 0) {
-                errPrice.textContent = "Precio inválido (Mínimo 0).";
-                isValid = false;
-            }
-
-            // 5. Validación Stock (Requerido, Entero, >= 0)
-            const stockVal = parseInt(stockIn.value, 10);
-            if (isNaN(stockVal) || stockVal < 0) {
-                errStock.textContent = "Stock inválido (Mínimo 0).";
-                isValid = false;
-            }
-
-            // Si pasa el filtro frontend, guardamos en LocalStorage
-            if (isValid) {
-                const newProduct = {
-                    code: codeVal,
-                    category: catIn.value,
-                    name: nameVal,
-                    price: priceVal,
-                    stock: stockVal,
-                    description: descIn.value.trim()
-                };
-
-                currentCatalog.push(newProduct);
-                localStorage.setItem("huerto_products_catalog", JSON.stringify(currentCatalog));
-
-                alert("¡Producto agregado exitosamente al catálogo!");
-                window.location.href = "productosAdmin.html"; // Regresa al listado actualizado
-            }
-        });
-    }
-});
-
-// ==========================================================================
-/* EDICIÓN Y ACTUALIZACIÓN DE PRODUCTOS EXISTENTES (editarProducto.html) */
-// ==========================================================================
-function initEditProductPage() {
-    const editForm = document.getElementById("form-admin-edit-product");
-    if (!editForm) return; // Rompe la función si no estamos en editarProducto.html
-
-    // 1. Rescatamos el parámetro 'code' desde la URL usando URLSearchParams
-    const urlParams = new URLSearchParams(window.location.search);
-    const productCode = urlParams.get("code");
-
-    if (!productCode) {
-        alert("Código de producto no especificado.");
-        window.location.href = "productosAdmin.html";
-        return;
-    }
-
-    // 2. Buscamos el producto en LocalStorage
-    const catalog = getStoredProducts();
-    const product = catalog.find(p => p.code === productCode);
-
-    if (!product) {
-        alert("El producto especificado no existe en el catálogo.");
-        window.location.href = "productosAdmin.html";
-        return;
-    }
-
-    // 3. Rellenamos los inputs con los valores actuales del producto
-    document.getElementById("edit-form-title").textContent = `Modificar Producto: ${product.code}`;
-    document.getElementById("edit-prod-code").value = product.code;
-    document.getElementById("edit-prod-category").value = product.category;
-    document.getElementById("edit-prod-name").value = product.name;
-    document.getElementById("edit-prod-price").value = product.price;
-    document.getElementById("edit-prod-stock").value = product.stock;
-    document.getElementById("edit-prod-desc").value = product.description || "";
-
-    // 4. Capturamos el evento Submit para guardar los cambios
-    editForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        // Inputs
-        const nameIn = document.getElementById("edit-prod-name");
-        const catIn = document.getElementById("edit-prod-category");
-        const priceIn = document.getElementById("edit-prod-price");
-        const stockIn = document.getElementById("edit-prod-stock");
-        const descIn = document.getElementById("edit-prod-desc");
-
-        // Errores
-        const errName = document.getElementById("error-edit-name");
-        const errCat = document.getElementById("error-edit-cat");
-        const errPrice = document.getElementById("error-edit-price");
-        const errStock = document.getElementById("error-edit-stock");
-
-        // Limpieza de mensajes
-        [errName, errCat, errPrice, errStock].forEach(el => el.textContent = "");
-
-        let isValid = true;
-
-        // Validaciones idénticas a la pauta
-        if (!catIn.value) { errCat.textContent = "Debe seleccionar una categoría."; isValid = false; }
-        if (!nameIn.value.trim()) { errName.textContent = "El nombre es obligatorio."; isValid = false; }
-        
-        const priceVal = parseFloat(priceIn.value);
-        if (isNaN(priceVal) || priceVal < 0) { errPrice.textContent = "Precio inválido."; isValid = false; }
-        
-        const stockVal = parseInt(stockIn.value, 10);
-        if (isNaN(stockVal) || stockVal < 0) { errStock.textContent = "Stock inválido."; isValid = false; }
-
-        if (isValid) {
-            // Actualizamos el objeto en el arreglo clonado
-            product.category = catIn.value;
-            product.name = nameIn.value.trim();
-            product.price = priceVal;
-            product.stock = stockVal;
-            product.description = descIn.value.trim();
-
-            // Guardamos el arreglo modificado completo en LocalStorage
-            localStorage.setItem("huerto_products_catalog", JSON.stringify(catalog));
-
-            alert("¡Producto actualizado exitosamente!");
-            window.location.href = "productosAdmin.html"; // Redirige al listado general
-        }
-    });
-}
-
-// Aseguramos que la inicialización se gatille al cargar la ventana
-document.addEventListener("DOMContentLoaded", () => {
-    initEditProductPage();
-});
 
 // ==========================================================================
 /* PROCESAMIENTO Y VALIDACIÓN DE NUEVOS USUARIOS (nuevoUsuario.html) */
 // ==========================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    const addUserForm = document.getElementById("form-admin-add-user");
+function initAddUserPage() {
+    const addUserForm = document.getElementById("form-admin-add-user"); // [cite: 252]
+    if (!addUserForm) return; // [cite: 253]
 
-    if (addUserForm) {
-        addUserForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+    addUserForm.addEventListener("submit", (e) => { // [cite: 254]
+        e.preventDefault(); // [cite: 255]
+        const runIn = document.getElementById("user-run"); // [cite: 257]
+        const roleIn = document.getElementById("user-role"); // [cite: 258]
+        const nameIn = document.getElementById("user-name"); // [cite: 259]
+        const lastnameIn = document.getElementById("user-lastname"); // [cite: 260]
+        const emailIn = document.getElementById("user-email"); // [cite: 261]
+        const regionIn = document.getElementById("user-region"); // [cite: 262]
+        const comunaIn = document.getElementById("user-comuna"); // [cite: 263]
 
-            // Elementos de entrada
-            const runIn = document.getElementById("user-run");
-            const roleIn = document.getElementById("user-role");
-            const nameIn = document.getElementById("user-name");
-            const lastnameIn = document.getElementById("user-lastname");
-            const emailIn = document.getElementById("user-email");
-            const regionIn = document.getElementById("user-region");
-            const comunaIn = document.getElementById("user-comuna");
-            const addressIn = document.getElementById("user-address");
+        const errRun = document.getElementById("error-user-run"); // [cite: 266]
+        const errRole = document.getElementById("error-user-role"); // [cite: 267]
+        const errName = document.getElementById("error-user-name"); // [cite: 268]
+        const errLastname = document.getElementById("error-user-lastname"); // [cite: 269]
+        const errEmail = document.getElementById("error-user-email"); // [cite: 270]
+        const errRegion = document.getElementById("error-user-region"); // [cite: 271]
+        const errComuna = document.getElementById("error-user-comuna"); // [cite: 272]
 
-            // Elementos de error
-            const errRun = document.getElementById("error-user-run");
-            const errRole = document.getElementById("error-user-role");
-            const errName = document.getElementById("error-user-name");
-            const errLastname = document.getElementById("error-user-lastname");
-            const errEmail = document.getElementById("error-user-email");
-            const errRegion = document.getElementById("error-user-region");
-            const errComuna = document.getElementById("error-user-comuna");
-            const errAddress = document.getElementById("error-user-address");
+        [errRun, errRole, errName, errLastname, errEmail, errRegion, errComuna].forEach(el => el.textContent = ""); // [cite: 275]
+        let isValid = true; // [cite: 276]
+        const currentUsers = getStoredUsers(); // [cite: 277]
 
-            // Limpieza de errores
-            [errRun, errRole, errName, errLastname, errEmail, errRegion, errComuna, errAddress].forEach(el => el.textContent = "");
+        const runVal = runIn.value.trim().toUpperCase(); // [cite: 279]
+        if (!runVal) { errRun.textContent = "El RUN es obligatorio."; isValid = false; } // [cite: 280, 282]
+        else if (runVal.length < 7 || runVal.length > 9) { errRun.textContent = "Debe tener entre 7 y 9 caracteres."; isValid = false; } // [cite: 283, 285]
+        else if (currentUsers.some(u => u.run === runVal)) { errRun.textContent = "Este RUN ya está registrado en el sistema."; isValid = false; } // [cite: 286, 288]
 
-            let isValid = true;
-            const currentUsers = getStoredUsers();
+        if (!roleIn.value) { errRole.textContent = "Seleccione un rol."; isValid = false; } // [cite: 291]
+        if (!nameIn.value.trim()) { errName.textContent = "El nombre es obligatorio."; isValid = false; } // [cite: 293]
+        if (!lastnameIn.value.trim()) { errLastname.textContent = "El apellido es obligatorio."; isValid = false; } // [cite: 294]
 
-            // 1. Validación RUN (Requerido, largo 7-9, único)
-            const runVal = runIn.value.trim().toUpperCase();
-            if (!runVal) {
-                errRun.textContent = "El RUN es obligatorio.";
-                isValid = false;
-            } else if (runVal.length < 7 || runVal.length > 9) {
-                errRun.textContent = "Debe tener entre 7 y 9 caracteres.";
-                isValid = false;
-            } else if (currentUsers.some(u => u.run === runVal)) {
-                errRun.textContent = "Este RUN ya está registrado en el sistema.";
-                isValid = false;
+        const emailVal = emailIn.value.trim().toLowerCase(); // [cite: 296]
+        if (!emailVal) { errEmail.textContent = "El correo es obligatorio."; isValid = false; } // [cite: 297, 299]
+        else {
+            const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|profesor\.inacap\.cl|gmail\.com)$/;
+            if (!allowedDomains.test(emailVal)) {
+                errEmail.textContent = "Solo correos @inacap.cl, @profesor.inacap.cl o @gmail.com.";
+                isValid = false; // [cite: 304]
             }
+        }
 
-            // 2. Validación Perfil / Rol
-            if (!roleIn.value) { errRole.textContent = "Seleccione un rol."; isValid = false; }
+        if (!regionIn.value) { errRegion.textContent = "Región requerida."; isValid = false; } // [cite: 308]
+        if (!comunaIn.value) { errComuna.textContent = "Comuna requerida."; isValid = false; } // [cite: 309]
 
-            // 3. Validación Nombre (Max 50) y Apellidos (Max 100)
-            if (!nameIn.value.trim()) { errName.textContent = "El nombre es obligatorio."; isValid = false; }
-            if (!lastnameIn.value.trim()) { errLastname.textContent = "El apellido es obligatorio."; isValid = false; }
-
-            // 4. Validación Correo (Dominios INACAP o Gmail)
-            const emailVal = emailIn.value.trim().toLowerCase();
-            if (!emailVal) {
-                errEmail.textContent = "El correo es obligatorio.";
-                isValid = false;
-            } else {
-                const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|profesor\.inacap\.cl|gmail\.com)$/;
-                if (!allowedDomains.test(emailVal)) {
-                    errEmail.textContent = "Solo correos @inacap.cl, @profesor.inacap.cl o @gmail.com.";
-                    isValid = false;
-                }
-            }
-
-            // 5. Ubicación y Dirección (Max 300)
-            if (!regionIn.value) { errRegion.textContent = "Región requerida."; isValid = false; }
-            if (!comunaIn.value) { errComuna.textContent = "Comuna requerida."; isValid = false; }
-            if (!addressIn.value.trim()) { errAddress.textContent = "La dirección es obligatoria."; isValid = false; }
-
-            // Si todo está impecable, insertamos en LocalStorage
-            if (isValid) {
-                const newUser = {
-                    run: runVal,
-                    role: roleIn.value,
-                    name: nameIn.value.trim(),
-                    lastname: lastnameIn.value.trim(),
-                    email: emailVal,
-                    region: regionIn.value,
-                    comuna: comunaIn.value,
-                    address: addressIn.value.trim()
-                };
-
-                currentUsers.push(newUser);
-                localStorage.setItem("huerto_users_catalog", JSON.stringify(currentUsers));
-
-                alert("¡Usuario creado de manera exitosa!");
-                window.location.href = "usuariosAdmin.html"; // Regresa a la tabla dinámicamente actualizada
-            }
-        });
-    }
-});
+        if (isValid) { // [cite: 312]
+            const newUser = { // [cite: 313]
+                run: runVal, // [cite: 314]
+                role: roleIn.value, // [cite: 315]
+                name: nameIn.value.trim(), // [cite: 316]
+                lastname: lastnameIn.value.trim(), // [cite: 317]
+                email: emailVal, // [cite: 318]
+                region: regionIn.value, // [cite: 319]
+                comuna: comunaIn.value // [cite: 320]
+            };
+            currentUsers.push(newUser); // [cite: 323]
+            localStorage.setItem("huerto_users_catalog", JSON.stringify(currentUsers)); // [cite: 324]
+            alert("¡Usuario creado de manera exitosa!"); // [cite: 325]
+            window.location.href = "usuariosAdmin.html"; // [cite: 326]
+        }
+    });
+}
 
 // ==========================================================================
 /* EDICIÓN Y ACTUALIZACIÓN DE USUARIOS EXISTENTES ADMIN (editarUsuario.html) */
 // ==========================================================================
 function initEditUserPage() {
-    const editForm = document.getElementById("form-admin-edit-user");
-    if (!editForm) return; // Termina la función si no estamos en editarUsuario.html
-
-    // 1. Rescatamos el parámetro 'run' desde la URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const userRun = urlParams.get("run");
-
-    if (!userRun) {
-        alert("RUN de usuario no especificado.");
-        window.location.href = "usuariosAdmin.html";
-        return;
+    const editForm = document.getElementById("form-admin-edit-user"); // [cite: 335]
+    if (!editForm) return; // [cite: 336]
+    const urlParams = new URLSearchParams(window.location.search); // [cite: 338]
+    const userRun = urlParams.get("run"); // [cite: 339]
+    if (!userRun) { // [cite: 340]
+        alert("RUN de usuario no especificado."); // [cite: 341]
+        window.location.href = "usuariosAdmin.html"; // [cite: 342]
+        return; // [cite: 343]
     }
-
-    // 2. Buscamos el usuario en LocalStorage
-    const usersList = getStoredUsers();
-    const user = usersList.find(u => u.run === userRun);
-
-    if (!user) {
-        alert("El usuario especificado no existe en el sistema.");
-        window.location.href = "usuariosAdmin.html";
-        return;
+    const usersList = getStoredUsers(); // [cite: 346]
+    const user = usersList.find(u => u.run === userRun); // [cite: 347]
+    if (!user) { // [cite: 348]
+        alert("El usuario especificado no existe en el sistema."); // [cite: 349]
+        window.location.href = "usuariosAdmin.html"; // [cite: 350]
+        return; // [cite: 351]
     }
-
-    // ==========================================================================
-    // CAMBIO EN PASO 3: Rellenado de campos respetando los selects dinámicos
-    // ==========================================================================
-    document.getElementById("edit-user-title").textContent = `Modificar Usuario RUN: ${user.run}`;
-    document.getElementById("edit-user-run").value = user.run;
-    document.getElementById("edit-user-role").value = user.role;
-    document.getElementById("edit-user-name").value = user.name;
-    document.getElementById("edit-user-lastname").value = user.lastname;
-    document.getElementById("edit-user-email").value = user.email;
-    document.getElementById("edit-user-address").value = user.address;
-
-    // Rescatamos los dos selects de la pantalla
-    const selectReg = document.getElementById("edit-user-region");
-    const selectCom = document.getElementById("edit-user-comuna");
+    document.getElementById("edit-user-title").textContent = `Modificar Usuario RUN: ${user.run}`; // [cite: 356]
+    document.getElementById("edit-user-run").value = user.run; // [cite: 357]
+    document.getElementById("edit-user-role").value = user.role; // [cite: 358]
+    document.getElementById("edit-user-name").value = user.name; // [cite: 359]
+    document.getElementById("edit-user-lastname").value = user.lastname; // [cite: 360]
+    document.getElementById("edit-user-email").value = user.email; // [cite: 361]
     
-    if (selectReg && selectCom) {
-        // 1. Asignamos la región que el usuario ya tenía guardada
-        selectReg.value = user.region;
-        
-        // 2. ¡La magia!: Forzamos manualmente el evento 'change' para que se ejecute la lista de comunas
-        selectReg.dispatchEvent(new Event('change'));
-        
-        // 3. Ahora que el select ya tiene las comunas cargadas, asignamos la comuna del usuario
-        selectCom.value = user.comuna;
+    const selectReg = document.getElementById("edit-user-region"); // [cite: 364]
+    const selectCom = document.getElementById("edit-user-comuna"); // [cite: 365]
+
+    if (selectReg && selectCom) { // [cite: 366]
+        selectReg.value = user.region; // [cite: 368]
+        selectReg.dispatchEvent(new Event('change')); // [cite: 370]
+        selectCom.value = user.comuna; // [cite: 372]
     }
-
-    // 4. Capturamos el submit para persistir los cambios modificados
-    editForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const roleIn = document.getElementById("edit-user-role");
-        const nameIn = document.getElementById("edit-user-name");
-        const lastnameIn = document.getElementById("edit-user-lastname");
-        const emailIn = document.getElementById("edit-user-email");
-        const regionIn = document.getElementById("edit-user-region");
-        const comunaIn = document.getElementById("edit-user-comuna");
-        const addressIn = document.getElementById("edit-user-address");
-
-        const errRole = document.getElementById("error-edit-user-role");
-        const errName = document.getElementById("error-edit-user-name");
-        const errLastname = document.getElementById("error-edit-user-lastname");
-        const errEmail = document.getElementById("error-edit-user-email");
-        const errRegion = document.getElementById("error-edit-user-region");
-        const errComuna = document.getElementById("error-edit-user-comuna");
-        const errAddress = document.getElementById("error-edit-user-address");
-
-        // Limpieza de mensajes
-        [errRole, errName, errLastname, errEmail, errRegion, errComuna, errAddress].forEach(el => el.textContent = "");
-
-        let isValid = true;
-
-        // Validaciones estrictas de INACAP
-        if (!roleIn.value) { errRole.textContent = "Seleccione un rol."; isValid = false; }
-        if (!nameIn.value.trim()) { errName.textContent = "El nombre es obligatorio."; isValid = false; }
-        if (!lastnameIn.value.trim()) { errLastname.textContent = "El apellido es obligatorio."; isValid = false; }
-
-        const emailVal = emailIn.value.trim().toLowerCase();
-        if (!emailVal) {
-            errEmail.textContent = "El correo es obligatorio.";
-            isValid = false;
-        } else {
+    editForm.addEventListener("submit", (e) => { // [cite: 375]
+        e.preventDefault(); // [cite: 376]
+        const roleIn = document.getElementById("edit-user-role"); // [cite: 377]
+        const nameIn = document.getElementById("edit-user-name"); // [cite: 378]
+        const lastnameIn = document.getElementById("edit-user-lastname"); // [cite: 379]
+        const emailIn = document.getElementById("edit-user-email"); // [cite: 380]
+        const regionIn = document.getElementById("edit-user-region"); // [cite: 381]
+        const comunaIn = document.getElementById("edit-user-comuna"); // [cite: 382]
+        
+        const errRole = document.getElementById("error-edit-user-role"); // [cite: 384]
+        const errName = document.getElementById("error-edit-user-name"); // [cite: 385]
+        const errLastname = document.getElementById("error-edit-user-lastname"); // [cite: 386]
+        const errEmail = document.getElementById("error-edit-user-email"); // [cite: 387]
+        const errRegion = document.getElementById("error-edit-user-region"); // [cite: 388]
+        const errComuna = document.getElementById("error-edit-user-comuna"); // [cite: 389]
+        
+        [errRole, errName, errLastname, errEmail, errRegion, errComuna].forEach(el => el.textContent = ""); // [cite: 392]
+        let isValid = true; // [cite: 393]
+        if (!roleIn.value) { errRole.textContent = "Seleccione un rol."; isValid = false; } // [cite: 395]
+        if (!nameIn.value.trim()) { errName.textContent = "El nombre es obligatorio."; isValid = false; } // [cite: 396]
+        if (!lastnameIn.value.trim()) { errLastname.textContent = "El apellido es obligatorio."; isValid = false; } // [cite: 397]
+        const emailVal = emailIn.value.trim().toLowerCase(); // [cite: 398]
+        if (!emailVal) { errEmail.textContent = "El correo es obligatorio."; isValid = false; } // [cite: 399, 401]
+        else {
             const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|profesor\.inacap\.cl|gmail\.com)$/;
             if (!allowedDomains.test(emailVal)) {
                 errEmail.textContent = "Solo correos @inacap.cl, @profesor.inacap.cl o @gmail.com.";
-                isValid = false;
+                isValid = false; // [cite: 406]
             }
         }
-
-        if (!regionIn.value) { errRegion.textContent = "Región requerida."; isValid = false; }
-        if (!comunaIn.value) { errComuna.textContent = "Comuna requerida."; isValid = false; }
-        if (!addressIn.value.trim()) { errAddress.textContent = "La dirección es obligatoria."; isValid = false; }
-
-        if (isValid) {
-            // Modificamos el objeto dentro de nuestro arreglo clonado
-            user.role = roleIn.value;
-            user.name = nameIn.value.trim();
-            user.lastname = lastnameIn.value.trim();
-            user.email = emailVal;
-            user.region = regionIn.value;
-            user.comuna = comunaIn.value;
-            user.address = addressIn.value.trim();
-
-            // Guardamos la lista de usuarios actualizada de vuelta en LocalStorage
-            localStorage.setItem("huerto_users_catalog", JSON.stringify(usersList));
-
-            alert("¡Usuario modificado con éxito!");
-            window.location.href = "usuariosAdmin.html"; // Redirige al listado actualizado
+        if (!regionIn.value) { errRegion.textContent = "Región requerida."; isValid = false; } // [cite: 409]
+        if (!comunaIn.value) { errComuna.textContent = "Comuna requerida."; isValid = false; } // [cite: 410]
+        if (isValid) { // [cite: 412]
+            user.role = roleIn.value; // [cite: 414]
+            user.name = nameIn.value.trim(); // [cite: 415]
+            user.lastname = lastnameIn.value.trim(); // [cite: 416]
+            user.email = emailVal; // [cite: 417]
+            user.region = regionIn.value; // [cite: 418]
+            user.comuna = comunaIn.value; // [cite: 419]
+            localStorage.setItem("huerto_users_catalog", JSON.stringify(usersList)); // [cite: 422]
+            alert("¡Usuario modificado con éxito!"); // [cite: 423]
+            window.location.href = "usuariosAdmin.html"; // [cite: 424]
         }
     });
 }
-
-// Inicializar al cargar la ventana
-document.addEventListener("DOMContentLoaded", () => {
-    initEditUserPage();
-});
 
 // ==========================================================================
 /* BASE DE DATOS Y LÓGICA DE REGIONES Y COMUNAS DINÁMICAS */
 // ==========================================================================
-
-const chileUbicaciones = {
-    "Región Metropolitana": ["Santiago", "Providencia", "Las Condes", "Maipú", "Puente Alto", "San Bernardo"],
-    "Región de Valparaíso": ["Viña del Mar", "Valparaíso", "Quilpué", "Villa Alemana", "San Antonio"],
-    "Región del Biobío": ["Concepción", "Nacimiento", "Talcahuano", "Los Ángeles", "Chiguayante"],
-    "Región de la Araucanía": ["Villarrica", "Temuco", "Pucón", "Angol", "Padre Las Casas"],
-    "Región de Los Lagos": ["Puerto Montt", "Puerto Varas", "Osorno", "Castro", "Ancud"]
+const chileUbicaciones = { // [cite: 435]
+    "Región Metropolitana": ["Santiago", "Providencia", "Las Condes", "Maipú", "Puente Alto", "San Bernardo"], // [cite: 436]
+    "Región de Valparaíso": ["Viña del Mar", "Valparaíso", "Quilpué", "Villa Alemana", "San Antonio"], // [cite: 437]
+    "Región del Biobío": ["Concepción", "Nacimiento", "Talcahuano", "Los Ángeles", "Chiguayante"], // [cite: 438]
+    "Región de la Araucanía": ["Villarrica", "Temuco", "Pucón", "Angol", "Padre Las Casas"], // [cite: 439]
+    "Región de Los Lagos": ["Puerto Montt", "Puerto Varas", "Osorno", "Castro", "Ancud"] // [cite: 440]
 };
 
-// Función global para inicializar los selects en cualquier formulario (público o admin)
-function setupRegionesYComunas(idRegion, idComuna) {
-    const selectRegion = document.getElementById(idRegion);
-    const selectComuna = document.getElementById(idComuna);
+function setupRegionesYComunas(idRegion, idComuna) { // [cite: 443]
+    const selectRegion = document.getElementById(idRegion); // [cite: 444]
+    const selectComuna = document.getElementById(idComuna); // [cite: 445]
+    if (!selectRegion || !selectComuna) return; // [cite: 446]
 
-    if (!selectRegion || !selectComuna) return;
-
-    // 1. Poblamos el select de Regiones
-    selectRegion.innerHTML = '<option value="">-- Seleccione Región --</option>';
-    Object.keys(chileUbicaciones).forEach(region => {
-        const opt = document.createElement("option");
-        opt.value = region;
-        opt.textContent = region;
-        selectRegion.appendChild(opt);
+    selectRegion.innerHTML = '<option value="">-- Seleccione Región --</option>'; // [cite: 448]
+    Object.keys(chileUbicaciones).forEach(region => { // [cite: 449]
+        const opt = document.createElement("option"); // [cite: 450]
+        opt.value = region; // [cite: 451]
+        opt.textContent = region; // [cite: 452]
+        selectRegion.appendChild(opt); // [cite: 453]
     });
-
-    // 2. Escuchamos el cambio de Región para poblar las Comunas
-    selectRegion.addEventListener("change", () => {
-        const regionSeleccionada = selectRegion.value;
-        selectComuna.innerHTML = '<option value="">-- Seleccione Comuna --</option>';
-
-        if (regionSeleccionada && chileUbicaciones[regionSeleccionada]) {
-            chileUbicaciones[regionSeleccionada].forEach(comuna => {
-                const opt = document.createElement("option");
-                opt.value = comuna;
-                opt.textContent = comuna;
-                selectComuna.appendChild(opt);
+    selectRegion.addEventListener("change", () => { // [cite: 456]
+        const regionSeleccionada = selectRegion.value; // [cite: 457]
+        selectComuna.innerHTML = '<option value="">-- Seleccione Comuna --</option>'; // [cite: 458]
+        if (regionSeleccionada && chileUbicaciones[regionSeleccionada]) { // [cite: 459]
+            chileUbicaciones[regionSeleccionada].forEach(comuna => { // [cite: 460]
+                const opt = document.createElement("option"); // [cite: 461]
+                opt.value = comuna; // [cite: 462]
+                opt.textContent = comuna; // [cite: 463]
+                selectComuna.appendChild(opt); // [cite: 464]
             });
         } else {
-            selectComuna.innerHTML = '<option value="">-- Primero elija una región --</option>';
+            selectComuna.innerHTML = '<option value="">-- Primero elija una region --</option>'; // [cite: 467]
         }
     });
 }
 
-// Inicialización automática en las páginas correspondientes al cargar el DOM
-document.addEventListener("DOMContentLoaded", () => {
-    // Si estamos en nuevoUsuario.html
-    setupRegionesYComunas("user-region", "user-comuna");
-    
-    // Si estamos en editarUsuario.html
-    setupRegionesYComunas("edit-user-region", "edit-user-comuna");
+// ==========================================================================
+/* CONTROL DE CARGA CENTRALIZADO ÚNICO GATILLADO AL INICIO */
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => { // [cite: 472]
+    initStoreMap(); // [cite: 1]
+
+    if (document.getElementById("admin-products-table-body")) {
+        renderAdminProductsTable();
+    }
+
+    if (document.getElementById("admin-users-table-body")) {
+        renderAdminUsersTable();
+    }
+
+    initAddProductPage();
+    initEditProductPage();
+
+    if (document.getElementById("form-admin-add-user")) { // [cite: 473]
+        setupRegionesYComunas("user-region", "user-comuna"); // [cite: 474]
+        initAddUserPage();
+    }
+    if (document.getElementById("form-admin-edit-user")) { // [cite: 475]
+        setupRegionesYComunas("edit-user-region", "edit-user-comuna"); // [cite: 476]
+        initEditUserPage();
+    }
 });
