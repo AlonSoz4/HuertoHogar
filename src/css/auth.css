@@ -1,0 +1,144 @@
+/* ==========================================================================
+   HOJA DE ESTILOS DE AUTENTICACIÓN (LOGIN Y REGISTRO) - COMPARTIDA
+   ========================================================================== */
+.auth-main-wrapper {
+    background-color: var(--color-fondo-principal);
+    padding: 50px 0;
+}
+
+/* El login es angosto, el registro es más ancho por sus campos */
+.auth-container.id-login-view { max-width: 500px; margin: 0 auto; padding: 0 20px; }
+.auth-container.id-register-view { max-width: 850px; margin: 0 auto; padding: 0 20px; }
+
+.auth-brand-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+.auth-form-logo {
+    width: 100px;
+    height: auto;
+    border: 1px solid var(--color-texto-principal);
+}
+.auth-company-name {
+    font-family: var(--fuente-header);
+    font-size: 2rem;
+    color: var(--color-texto-principal);
+    margin: 0;
+}
+
+/* Caja de Formulario Estilo Plano */
+.auth-box-form {
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    box-shadow: 6px 6px 0px var(--color-texto-principal);
+}
+
+.auth-title-bar {
+    background-color: #d8d8d8;
+    border-bottom: 2px solid var(--color-texto-principal);
+    padding: 12px 20px;
+    font-family: var(--fuente-principal);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-texto-principal);
+    text-transform: uppercase;
+}
+
+.auth-form-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Grilla de 2 columnas exclusiva para ordenar el Registro Extendido */
+.auth-form-body.sub-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+}
+
+.auth-group-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Forzar elementos de ancho completo en la grilla */
+.grid-full-width {
+    grid-column: span 2;
+}
+
+.auth-field-label {
+    font-family: var(--fuente-principal);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--color-texto-principal);
+}
+
+.auth-field-input,
+.auth-field-select {
+    width: 100%;
+    padding: 10px;
+    font-family: var(--fuente-principal);
+    font-size: 0.9rem;
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    color: var(--color-texto-principal);
+}
+
+.auth-field-input:focus,
+.auth-field-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: #fbfdfc;
+}
+
+.error-msg-field {
+    font-family: var(--fuente-principal);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #cc0000;
+    min-height: 14px;
+}
+
+.auth-action-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Botón Cuadrado Oficial */
+.btn-submit-auth {
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    padding: 12px 45px;
+    font-family: var(--fuente-principal);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--color-texto-principal);
+    transition: all 0.1s ease;
+}
+
+.btn-submit-auth:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--color-texto-principal);
+    background-color: var(--color-texto-principal);
+    color: var(--color-blanco);
+}
+
+/* Responsivo para celulares (vuelve todo a una columna) */
+@media (max-width: 600px) {
+    .auth-form-body.sub-grid-layout {
+        grid-template-columns: 1fr;
+    }
+    .grid-full-width {
+        grid-column: span 1;
+    }
+}
