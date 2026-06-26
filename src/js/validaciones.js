@@ -71,3 +71,55 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+// ==========================================================================
+/* CONTROL DE REGISTRO PÚBLICO DE LA TIENDA (registro.html) */
+// ==========================================================================
+// ... (Aquí van tus validaciones normales de campos de registro de la tienda) ...
+
+if (isFormValid) {
+    // 1. Rescatamos la lista de usuarios que ya existe en el LocalStorage
+    // Usamos exactamente la misma llave del administrador
+    const storedUsersJson = localStorage.getItem("huerto_users_catalog");
+    let currentUsers = [];
+
+    if (storedUsersJson) {
+        currentUsers = JSON.parse(storedUsersJson);
+    } else {
+        // Si por alguna razón está vacío, podemos dejar por defecto las cuentas base
+        currentUsers = [
+            { run: "19011022K", name: "Administrador", lastname: "Huerto Hogar", email: "admin@inacap.cl", role: "Administrador", region: "RM", comuna: "Santiago", address: "Av. España 450" }
+        ];
+    }
+
+    // 2. Capturamos los datos del nuevo cliente que se está registrando en la tienda
+    const newClient = {
+        run: document.getElementById("reg-run").value.trim().toUpperCase(), // Si pides RUN
+        name: document.getElementById("reg-name").value.trim(),
+        lastname: document.getElementById("reg-lastname").value.trim(),
+        email: document.getElementById("reg-email").value.trim().toLowerCase(),
+        role: "Cliente", // <-- REGLA DE ORO: Todo registro público entra automáticamente con rol Cliente
+        region: document.getElementById("reg-region").value,
+        comuna: document.getElementById("reg-comuna").value,
+        address: document.getElementById("reg-address").value.trim()
+    };
+
+    // 3. Validamos rápidamente que el RUN o Correo no existan previamente
+    if (currentUsers.some(u => u.run === newClient.run)) {
+        alert("Este RUN ya se encuentra registrado.");
+        return;
+    }
+    if (currentUsers.some(u => u.email === newClient.email)) {
+        alert("Este correo electrónico ya está en uso.");
+        return;
+    }
+
+    // 4. Lo empujamos al arreglo y lo guardamos en la misma llave compartida
+    currentUsers.push(newClient);
+    localStorage.setItem("huerto_users_catalog", JSON.stringify(currentUsers));
+
+    alert("¡Registro completado con éxito! Bienvenido a HuertoHogar.");
+    
+    // Redireccionamos al login para que inicie sesión con su nueva cuenta
+    window.location.href = "login.html"; 
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario - Huerto Hogar</title>
+
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/auth.css">
+</head>
+<body>
+
+    <div class="admin-layout-wrapper">
+        
+        <!-- SIDEBAR VERTICAL COMPARTIDO -->
+        <aside class="admin-sidebar" id="sidebar-menu">
+            <div class="sidebar-brand">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo Admin" class="admin-logo-img">
+                <span class="admin-brand-name">HuertoHogar</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="homeAdmin.html" class="nav-item"><span class="nav-icon">📊</span> Dashboard</a></li>
+                    <li><a href="productosAdmin.html" class="nav-item"><span class="nav-icon">📦</span> Productos</a></li>
+                    <li><a href="usuariosAdmin.html" class="nav-item active"><span class="nav-icon">👥</span> Usuarios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- CONTENIDO DERECHO -->
+        <div class="admin-main-content">
+            <main class="admin-dashboard-view">
+                
+                <div class="auth-container id-register-view" style="max-width: 750px; margin: 0;">
+                    <div class="auth-box-form">
+                        <div class="auth-title-bar" id="edit-user-title">Modificar Perfil de Usuario</div>
+                        
+                        <form id="form-admin-edit-user" class="auth-form-body sub-grid-layout" novalidate>
+                            
+                            <!-- RUN (Bloqueado por seguridad) -->
+                            <div class="auth-group-block">
+                                <label for="edit-user-run" class="auth-field-label">RUN (NO EDITABLE)</label>
+                                <input type="text" id="edit-user-run" class="auth-field-input" style="background-color: #e2e3e5; cursor: not-allowed;" readonly>
+                            </div>
+
+                            <!-- Tipo de Usuario / Rol -->
+                            <div class="auth-group-block">
+                                <label for="edit-user-role" class="auth-field-label">TIPO DE USUARIO (ROL)</label>
+                                <select id="edit-user-role" class="auth-field-select" required>
+                                    <option value="">-- Seleccione Perfil --</option>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Vendedor">Vendedor</option>
+                                    <option value="Cliente">Cliente</option>
+                                </select>
+                                <span class="error-msg-field" id="error-edit-user-role"></span>
+                            </div>
+
+                            <!-- Nombre -->
+                            <div class="auth-group-block">
+                                <label for="edit-user-name" class="auth-field-label">NOMBRE</label>
+                                <input type="text" id="edit-user-name" class="auth-field-input" maxlength="50" required>
+                                <span class="error-msg-field" id="error-edit-user-name"></span>
+                            </div>
+
+                            <!-- Apellidos -->
+                            <div class="auth-group-block">
+                                <label for="edit-user-lastname" class="auth-field-label">APELLIDOS</label>
+                                <input type="text" id="edit-user-lastname" class="auth-field-input" maxlength="100" required>
+                                <span class="error-msg-field" id="error-edit-user-lastname"></span>
+                            </div>
+
+                            <!-- Correo -->
+                            <div class="auth-group-block grid-full-width">
+                                <label for="edit-user-email" class="auth-field-label">CORREO ELECTRÓNICO</label>
+                                <input type="email" id="edit-user-email" class="auth-field-input" maxlength="100" required>
+                                <span class="error-msg-field" id="error-edit-user-email"></span>
+                            </div>
+
+                            <!-- Región -->
+                            <div class="auth-group-block">
+                                <label for="edit-user-region" class="auth-field-label">REGIÓN</label>
+                                <select id="edit-user-region" class="auth-field-select" required>
+                                    <option value="">-- Seleccione Región --</option>
+                                    <option value="RM">Región Metropolitana de Santiago</option>
+                                    <option value="AR">Región de la Araucanía</option>
+                                </select>
+                                <span class="error-msg-field" id="error-edit-user-region"></span>
+                            </div>
+
+                            <!-- Comuna -->
+                            <div class="auth-group-block">
+                                <label for="edit-user-comuna" class="auth-field-label">COMUNA</label>
+                                <select id="edit-user-comuna" class="auth-field-select" required>
+                                    <option value="">-- Seleccione Comuna --</option>
+                                    <option value="Santiago">Santiago</option>
+                                    <option value="Villarrica">Villarrica</option>
+                                </select>
+                                <span class="error-msg-field" id="error-edit-user-comuna"></span>
+                            </div>
+
+                            <!-- Dirección -->
+                            <div class="auth-group-block grid-full-width">
+                                <label for="edit-user-address" class="auth-field-label">DIRECCIÓN DE ENTREGA</label>
+                                <input type="text" id="edit-user-address" class="auth-field-input" maxlength="300" required>
+                                <span class="error-msg-field" id="error-edit-user-address"></span>
+                            </div>
+
+<!-- Comuna (Select dinámico filtrado por la región elegida) -->
+<div class="auth-group-block">
+    <label for="user-comuna" class="auth-field-label">COMUNA</label>
+    <select id="user-comuna" class="auth-field-select" required>
+        <option value="">-- Primero elija una región --</option>
+    </select>
+    <span class="error-msg-field" id="error-user-comuna"></span>
+</div>
+
+                            <!-- Botones -->
+                            <div class="auth-action-row grid-full-width" style="justify-content: flex-start; gap: 15px;">
+                                <button type="submit" class="btn-submit-auth" style="background-color: var(--color-primary); color:white; border-color:var(--color-primary);">ACTUALIZAR</button>
+                                <a href="usuariosAdmin.html" class="btn-submit-auth" style="text-decoration:none; text-align:center; background-color:#e2e3e5; color:#333; border-color:#d8d8d8;">CANCELAR</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

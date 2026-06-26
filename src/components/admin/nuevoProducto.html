@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Producto - Huerto Hogar</title>
+
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="../../css/auth.css">
+</head>
+<body>
+
+    <div class="admin-layout-wrapper">
+        
+        <aside class="admin-sidebar" id="sidebar-menu">
+            <div class="sidebar-brand">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo Admin" class="admin-logo-img">
+                <span class="admin-brand-name">HuertoHogar</span>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="homeAdmin.html" class="nav-item"><span class="nav-icon">📊</span> Dashboard</a></li>
+                    <li><a href="productosAdmin.html" class="nav-item active"><span class="nav-icon">📦</span> Productos</a></li>
+                    <li><a href="usuariosAdmin.html" class="nav-item"><span class="nav-icon">👥</span> Usuarios</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="admin-main-content">
+            <main class="admin-dashboard-view">
+                
+                <div class="auth-container id-register-view" style="max-width: 750px; margin: 0;">
+                    <div class="auth-box-form">
+                        <div class="auth-title-bar">Añadir Nuevo Producto</div>
+                        
+                        <form id="form-admin-add-product" class="auth-form-body sub-grid-layout" novalidate>
+                            
+                            <div class="auth-group-block">
+                                <label for="prod-code" class="auth-field-label">CÓDIGO PRODUCTO</label>
+                                <input type="text" id="prod-code" class="auth-field-input" placeholder="Ej: FR004" required>
+                                <span class="error-msg-field" id="error-prod-code"></span>
+                            </div>
+
+                            <div class="auth-group-block">
+                                <label for="prod-category" class="auth-field-label">CATEGORÍA</label>
+                                <select id="prod-category" class="auth-field-select" required>
+                                    <option value="">-- Seleccione categoría --</option>
+                                    <option value="Frutas Frescas">Frutas Frescas</option>
+                                    <option value="Verduras Orgánicas">Verduras Orgánicas</option>
+                                    <option value="Productos Orgánicos">Productos Orgánicos</option>
+                                    <option value="Productos Lácteos">Productos Lácteos</option>
+                                </select>
+                                <span class="error-msg-field" id="error-prod-category"></span>
+                            </div>
+
+                            <div class="auth-group-block grid-full-width">
+                                <label for="prod-name" class="auth-field-label">NOMBRE DEL PRODUCTO</label>
+                                <input type="text" id="prod-name" class="auth-field-input" maxlength="100" required>
+                                <span class="error-msg-field" id="error-prod-name"></span>
+                            </div>
+
+                            <div class="auth-group-block">
+                                <label for="prod-price" class="auth-field-label">PRECIO (CLP)</label>
+                                <input type="number" id="prod-price" class="auth-field-input" min="0" step="0.01" required>
+                                <span class="error-msg-field" id="error-prod-price"></span>
+                            </div>
+
+                            <div class="auth-group-block">
+                                <label for="prod-stock" class="auth-field-label">STOCK INICIAL</label>
+                                <input type="number" id="prod-stock" class="auth-field-input" min="0" step="1" required>
+                                <span class="error-msg-field" id="error-prod-stock"></span>
+                            </div>
+
+                            <div class="auth-group-block grid-full-width">
+                                <label for="prod-desc" class="auth-field-label">DESCRIPCIÓN (OPCIONAL)</label>
+                                <textarea id="prod-desc" class="auth-field-input" maxlength="500" rows="3" style="resize:vertical;"></textarea>
+                                <span class="error-msg-field" id="error-prod-desc"></span>
+                            </div>
+
+                            <div class="auth-action-row grid-full-width" style="justify-content: flex-start; gap: 15px;">
+                                <button type="submit" class="btn-submit-auth" style="background-color: var(--color-primary); color:white; border-color:var(--color-primary);">GUARDAR</button>
+                                <a href="productosAdmin.html" class="btn-submit-auth" style="text-decoration:none; text-align:center; background-color:#e2e3e5; color:#333; border-color:#d8d8d8;">VOLVER</a>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>
