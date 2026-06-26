@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros - Huerto Hogar</title>
+
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/nosotros.css">
+</head>
+<body>
+
+    <header class="main-header" id="site-header">
+        <div class="header-container">  
+            
+            <div class="logo-area">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo HuertoHogar" class="site-logo" id="main-logo">
+                <span class="site-title" id="main-title">Huerto Hogar</span>
+            </div>
+
+            <nav class="main-nav" id="navigation-bar">
+                <ul id="nav-list">
+                    <li><a href="../../../index.html" class="nav-link" id="nav-home">Home</a></li>
+                    <li><a href="productos.html" class="nav-link" id="nav-products">Productos</a></li>
+                    <li><a href="nosotros.html" class="nav-link active" id="nav-about">Nosotros</a></li>
+                    <li><a href="blogs.html" class="nav-link" id="nav-blogs">Blogs</a></li>
+                    <li><a href="contacto.html" class="nav-link" id="nav-contact">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="cart-area" id="cart-status-area">
+                <a href="carrito.html" id="cart-btn" class="cart-link">
+                    <span class="cart-icon" id="cart-ico">🛒</span> 
+                    <span class="cart-text" id="cart-text-label">Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <div class="session-bar" id="user-session-bar">
+        <div class="session-container">
+            <a href="login.html" class="session-link" id="link-login">Iniciar sesión</a>
+            <span class="session-divider" id="session-sep">|</span>
+            <a href="registro.html" class="session-link" id="link-register">Registrar usuario</a>
+        </div>
+    </div>
+
+    <main class="about-main-wrapper">
+        <div class="about-container">
+            
+            <section class="about-hero-section" id="about-identity-block">
+                <h1 class="about-page-title">Nuestra Historia</h1>
+                <p class="about-lead-text">
+                    <strong>HuertoHogar</strong> es una tienda online dedicada a llevar la frescura y calidad de los productos del campo directamente a la puerta de nuestros clientes en Chile.
+                </p>
+                <p class="about-body-text">
+                    Con más de 6 años de experiencia, operamos en más de 9 puntos a lo largo del país, conectando a las familias chilenas con el entorno rural, apoyando activamente el comercio local y promoviendo un estilo de vida consciente y saludable.
+                </p>
+            </section>
+
+            <section class="mission-vision-section" id="about-objectives-block">
+                <div class="objective-card">
+                    <h2 class="objective-title">Misión</h2>
+                    <p class="objective-text">
+                        Proporcionar productos frescos y de calidad directamente desde el campo hasta la puerta de nuestros clientes, garantizando la frescura y el sabor en cada entrega. Nos comprometemos a fomentar una conexión más cercana entre los consumidores y los agricultores locales, apoyando prácticas agrícolas sostenibles y promoviendo una alimentación saludable en todos los hogares chilenos.
+                    </p>
+                </div>
+
+                <div class="objective-card">
+                    <h2 class="objective-title">Visión</h2>
+                    <p class="objective-text">
+                        Ser la tienda online líder en la distribución de productos frescos y naturales en Chile, reconocida por nuestra calidad excepcional, servicio al cliente y compromiso con la sostenibilidad. Aspiramos a expandir nuestra presencia a nivel nacional e internacional, estableciendo un nuevo estándar en la distribución de productos agrícolas directos del productor al consumidor.
+                    </p>
+                </div>
+            </section>
+
+            <section class="map-coverage-section" id="about-map-block">
+                <h2 class="map-section-title">Nuestra Presencia Nacional</h2>
+                <p class="map-section-subtitle">
+                    Estamos comprometidos con el desarrollo local. Actualmente puedes encontrarnos operando estratégicamente en ciudades clave como:
+                </p>
+                
+                <div class="cities-badges-list" id="map-trigger-group">
+                    <button type="button" class="city-btn active" data-location="Santiago, Chile">Santiago</button>
+                    <button type="button" class="city-btn" data-location="Viña del Mar, Chile">Viña del Mar</button>
+                    <button type="button" class="city-btn" data-location="Valparaíso, Chile">Valparaíso</button>
+                    <button type="button" class="city-btn" data-location="Villarrica, Chile">Villarrica</button>
+                    <button type="button" class="city-btn" data-location="Nacimiento, Chile">Nacimiento</button>
+                    <button type="button" class="city-btn" data-location="Concepción, Chile">Concepción</button>
+                    <button type="button" class="city-btn" data-location="Puerto Montt, Chile">Puerto Montt</button>
+                </div>
+
+                <div class="map-embed-container">
+                    <iframe 
+                        id="interactive-store-map"
+                        src="https://maps.google.com/maps?q=Santiago,%20Chile&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="main-footer" id="site-footer">
+        <div class="footer-container">
+            
+            <div class="footer-brand-area" id="footer-brand-block">
+                <span class="footer-site-name">HuertoHogar</span>
+                <div class="payment-methods" id="payment-gateways">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/visa.svg" alt="Visa" class="card-logo" title="Visa">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/mastercard.svg" alt="Mastercard" class="card-logo" title="Mastercard">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/amex.svg" alt="American Express" class="card-logo" title="American Express">
+                </div>
+            </div>
+
+            <nav class="footer-nav-categories" id="footer-links-block">
+                <ul>
+                    <li><a href="nosotros.html" class="footer-link">Nuestra Historia</a></li>
+                    <li><a href="blogs.html" class="footer-link">Blog y Consejos</a></li>
+                    <li><a href="contacto.html" class="footer-link">Soporte y Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-newsletter-area" id="footer-subscribe-block">
+                <p class="newsletter-title">¡Mantente en contacto! Súmate a nuestro boletín.</p>
+                <form class="newsletter-form" id="form-newsletter" action="#" method="POST">
+                    <input type="email" name="user_email" class="input-newsletter" id="input-newsletter-email" placeholder="Correo electrónico" required>
+                    <button type="submit" class="btn-newsletter" id="btn-newsletter-submit">Suscribirse</button>
+                </form>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="../../js/validaciones.js" id="script-validations"></script>
+    <script src="../../js/main.js" id="script-main"></script>
+
+</body>
+</html>

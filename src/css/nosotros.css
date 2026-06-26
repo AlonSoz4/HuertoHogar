@@ -1,0 +1,125 @@
+/* ==========================================================================
+   PÁGINA NOSOTROS: DISEÑO CORPORATIVO Y MAPA
+   ========================================================================== */
+.about-main-wrapper {
+    background-color: var(--color-fondo-principal);
+    padding: 50px 0;
+}
+
+.about-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.about-page-title {
+    font-family: var(--fuente-header);
+    color: var(--color-marron-claro);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.about-lead-text {
+    font-family: var(--fuente-principal);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    text-align: center;
+    color: var(--color-texto-principal);
+    margin-bottom: 15px;
+}
+
+.about-body-text {
+    font-family: var(--fuente-principal);
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    color: var(--color-texto-secundario);
+    margin-bottom: 40px;
+}
+
+.mission-vision-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.objective-card {
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    padding: 30px;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px var(--color-texto-principal);
+}
+
+.objective-title {
+    font-family: var(--fuente-header);
+    color: var(--color-marron-claro);
+    font-size: 1.6rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.objective-text {
+    font-family: var(--fuente-principal);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-texto-principal);
+    text-align: justify;
+}
+
+.map-coverage-section {
+    background-color: var(--color-blanco);
+    border: 2px solid var(--color-texto-principal);
+    padding: 30px;
+    margin-top: 40px;
+}
+
+.map-section-title {
+    font-family: var(--fuente-header);
+    color: var(--color-texto-principal);
+    font-size: 1.8rem;
+    margin-top: 0;
+}
+
+.map-section-subtitle {
+    font-family: var(--fuente-principal);
+    color: var(--color-texto-secundario);
+    margin-bottom: 20px;
+}
+
+/* Botones interactivos para las ciudades obligatorias */
+.cities-badges-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.city-btn {
+    background-color: var(--color-fondo-principal);
+    border: 1px solid var(--color-texto-principal);
+    padding: 8px 18px;
+    font-family: var(--fuente-principal);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-texto-principal);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Efecto al pasar el cursor */
+.city-btn:hover {
+    background-color: var(--color-primary);
+    color: var(--color-blanco);
+    border-color: var(--color-primary);
+}
+
+/* Estado activo cuando la ciudad está seleccionada en el mapa */
+.city-btn.active {
+    background-color: var(--color-texto-principal);
+    color: var(--color-blanco);
+    border-color: var(--color-texto-principal);
+}
