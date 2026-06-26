@@ -1,0 +1,218 @@
+/* ==========================================================================
+   SISTEMA ADMINISTRATIVO (BACKOFFICE) - HOJA DE ESTILOS MODULAR
+   ========================================================================== */
+
+:root {
+    --bg-admin-main: #f4f6f9;
+    --sidebar-width: 260px;
+    --color-admin-dark: #23272b;
+    --color-admin-border: #dee2e6;
+    --color-primary: #2E8B57;        /* Verde Esmeralda Oficial de HuertoHogar */
+    --color-texto-principal: #333333; /* Gris Oscuro Oficial */
+    --color-texto-secundario: #666666;/* Gris Medio Oficial */
+    --color-blanco: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; /* Tipografía principal requerida */
+    background-color: var(--bg-admin-main);
+}
+
+/* Layout Contenedor Completo (Flexbox) */
+.admin-layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ==========================================================================
+   BARRA LATERAL (SIDEBAR) VERTICAL (Figura 11)
+   ========================================================================== */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--color-admin-dark);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.sidebar-brand {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #343a40;
+}
+
+.admin-logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #ffffff;
+}
+
+.admin-brand-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-nav {
+    flex-grow: 1;
+    padding: 20px 0;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 24px;
+    color: #c2c7d0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+}
+
+.nav-item.active {
+    background-color: var(--color-primary); /* Verde interactivo activo */
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #343a40;
+}
+
+.btn-logout-admin {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ff6b6b;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   ZONA DE CONTENIDOS (LADO DERECHO)
+   ========================================================================== */
+.admin-main-content {
+    margin-left: var(--sidebar-width); /* Deja el espacio libre para el Sidebar fijo */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Top Bar Superior */
+.admin-topbar {
+    height: 60px;
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--color-admin-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.user-role-badge {
+    background-color: #e2e3e5;
+    color: #383d41;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.notification-bell-icon {
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+/* Área de Dashboard Interno */
+.admin-dashboard-view {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.welcome-banner-block {
+    background-color: #ffffff;
+    border: 2px solid var(--color-texto-principal);
+    padding: 40px;
+    box-shadow: 4px 4px 0px var(--color-texto-principal);
+}
+
+.welcome-admin-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-texto-principal);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.welcome-admin-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-texto-secundario);
+    margin: 0;
+    max-width: 700px;
+}
+
+/* Grilla de Métricas Rápidas */
+.quick-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.stat-card {
+    background-color: #ffffff;
+    border: 2px solid var(--color-texto-principal);
+    padding: 24px;
+    box-shadow: 4px 4px 0px var(--color-texto-principal);
+}
+
+.stat-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+    text-transform: uppercase;
+}
+
+.stat-number {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+/* Diseño Responsivo Básico */
+@media (max-width: 900px) {
+    .quick-stats-grid {
+        grid-template-columns: 1fr;
+    }
+}

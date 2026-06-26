@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Huerto Hogar</title>
+
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos exclusivos para el ecosistema de administración -->
+    <link rel="stylesheet" href="../../css/admin.css">
+</head>
+<body>
+
+    <div class="admin-layout-wrapper">
+        
+        <!-- ==========================================================================
+           BARRA LATERAL (SIDEBAR): MENÚ VERTICAL REQUERIDO (Figura 11)
+           ========================================================================== -->
+        <aside class="admin-sidebar" id="sidebar-menu">
+            <div class="sidebar-brand">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo Admin" class="admin-logo-img">
+                <span class="admin-brand-name">HuertoHogar</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <!-- Enlaces corregidos estrictamente con mayúsculas CamelCase -->
+                    <li>
+                        <a href="homeAdmin.html" class="nav-item active">
+                            <span class="nav-icon">📊</span> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="productosAdmin.html" class="nav-item">
+                            <span class="nav-icon">📦</span> Productos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="usuariosAdmin.html" class="nav-item">
+                            <span class="nav-icon">👥</span> Usuarios
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="../../../index.html" class="btn-logout-admin">
+                    <span class="nav-icon">🚪</span> Salir de Tienda
+                </a>
+            </div>
+        </aside>
+
+        <!-- ==========================================================================
+           ZONA CONTENEDORA PRINCIPAL (LADO DERECHO)
+           ========================================================================== -->
+        <div class="admin-main-content">
+            
+            <!-- Barra superior del panel (Top Bar) -->
+            <header class="admin-topbar">
+                <div class="topbar-user-info">
+                    <span class="user-role-badge">Rol: Administrador Total</span>
+                </div>
+                <div class="topbar-actions">
+                    <span class="notification-bell-icon" title="Notificaciones">🔔</span>
+                </div>
+            </header>
+
+            <!-- Contenido Dinámico Central -->
+            <main class="admin-dashboard-view">
+                <div class="welcome-banner-block">
+                    <!-- Mensaje oficial exigido por el mockup de INACAP (Figura 11) -->
+                    <h1 class="welcome-admin-title">¡HOLA Administrador!</h1>
+                    <p class="welcome-admin-subtitle">Bienvenido al panel de gestión interna de HuertoHogar. Desde aquí tienes acceso total para controlar el catálogo de productos y la administración de usuarios del sistema.</p>
+                </div>
+
+                <!-- Tarjetas informativas rápidas (Métricas útiles para la presentación) -->
+                <div class="quick-stats-grid">
+                    <div class="stat-card">
+                        <h3>Categorías Activas</h3>
+                        <p class="stat-number">4</p>
+                        <small style="color: #666;">Frutas, Verduras, Orgánicos y Lácteos</small>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Productos en Venta</h3>
+                        <p class="stat-number">9</p>
+                        <small style="color: #666;">Cargados según catálogo oficial</small>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Puntos de Operación</h3>
+                        <p class="stat-number">7</p>
+                        <small style="color: #666;">Ciudades con sucursales activas</small>
+                    </div>
+                </div>
+            </main>
+
+        </div> <!-- Cierre .admin-main-content -->
+
+    </div> <!-- Cierre .admin-layout-wrapper -->
+
+    <!-- Scripts compartidos -->
+    <script src="../../js/main.js"></script>
+</body>
+</html>
