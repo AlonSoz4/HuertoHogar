@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Huerto Hogar</title>
+
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+        <!-- SECCIÓN HEADER -->
+
+    <header class="main-header" id="site-header">
+        <div class="header-container">  
+            
+            <div>
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo HuertoHogar" class="site-logo" id="main-logo">
+                <span class="site-title" id="main-title">Huerto Hogar</span>
+            </div>
+
+            <nav class="main-nav" id="navigation-bar">
+                <ul id="nav-list">
+                    <li><a href="../../../index.html" class="nav-link" id="nav-home">Home</a></li>
+                    <li><a href="productos.html" class="nav-link active" id="nav-products">Productos</a></li>
+                    <li><a href="nosotros.html" class="nav-link" id="nav-about">Nosotros</a></li>
+                    <li><a href="blogs.html" class="nav-link" id="nav-blogs">Blogs</a></li>
+                    <li><a href="contacto.html" class="nav-link" id="nav-contact">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="cart-area" id="cart-status-area">
+                <a href="#" id="cart-btn" class="cart-link">
+                    <span class="cart-icon" id="cart-ico">🛒</span> 
+                    <span class="cart-text" id="cart-text-label">Cart (<span id="cart-count">0</span>)</span>
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- sección barra de sesion-->
+
+<div class="session-bar" id="user-session-bar">
+    <div class="session-container">
+        <a href="login.html" class="session-link" id="link-login">Iniciar sesión</a>
+        <span class="session-divider" id="session-sep">|</span>
+        <a href="registro.html" class="session-link" id="link-register">Registrar usuario</a>
+    </div>
+</div>
+
+<main>
+      <div class="catalog-header" id="catalog-header-block">
+                    <h1 class="section-title" id="featured-products-heading">PRODUCTOS</h1>
+                    
+                    <div class="filter-checkbox-group" id="filter-wrapper">
+                        <span class="filter-label">Filtrar por:</span>
+                        
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="frutas" class="catalog-filter" checked>
+                            Frutas Frescas
+                        </label>
+                        
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="verduras" class="catalog-filter" checked>
+                            Verduras Orgánicas
+                        </label>
+                        
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="organicos" class="catalog-filter" checked>
+                            Productos Orgánicos
+                        </label>
+                        
+                        <label class="checkbox-container">
+                            <input type="checkbox" value="lacteos" class="catalog-filter" checked>
+                            Productos Lácteos
+                        </label>
+                    </div>
+                </div> 
+
+</main>
+
+<footer class="main-footer" id="site-footer">
+        <div class="footer-container">
+            
+            <div class="footer-brand-area" id="footer-brand-block">
+                <span class="footer-site-name">HuertoHogar</span>
+                <div class="payment-methods" id="payment-gateways">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/visa.svg" alt="Visa" class="card-logo" title="Visa">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/mastercard.svg" alt="Mastercard" class="card-logo" title="Mastercard">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/amex.svg" alt="American Express" class="card-logo" title="American Express">
+                </div>
+            </div>
+
+            <nav class="footer-nav-categories" id="footer-links-block">
+                <ul>
+                    <li><a href="productos.html" class="footer-link">Frutas Frescas</a></li>
+                    <li><a href="productos.html" class="footer-link">Verduras Orgánicas</a></li>
+                    <li><a href="productos.html" class="footer-link">Productos del Campo</a></li>
+                </ul>
+            </nav>
+
+            <div class="footer-newsletter-area" id="footer-subscribe-block">
+                <p class="newsletter-title">¡Mantente en contacto! Súmate a nuestro boletín.</p>
+                <form class="newsletter-form" id="form-newsletter" action="#" method="POST">
+                    <input type="email" name="user_email" class="input-newsletter" id="input-newsletter-email" placeholder="Correo electrónico" required>
+                    <button type="submit" class="btn-newsletter" id="btn-newsletter-submit">Suscribirse</button>
+                </form>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="../../js/validaciones.js" id="script-validations"></script>
+    <script src="../../js/main.js" id="script-main"></script>
+
+</body>
+</html>

@@ -421,3 +421,61 @@ a {
     background-color: var(--color-primary); /* Cambia a Verde Esmeralda corporativo */
     border-color: var(--color-primary);
 }
+
+/* ==========================================================================
+   PÁGINA DE PRODUCTOS: CABECERA Y FILTROS
+   ========================================================================== */
+
+/* Contenedor que alinea el título al centro y los filtros a la derecha (o abajo en pantallas chicas) */
+.catalog-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0; /* Una línea sutil de separación */
+}
+
+/* El grupo que envuelve las etiquetas y las casillas */
+.filter-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-family: var(--fuente-principal);
+    font-size: 0.9rem;
+    color: var(--color-texto-principal);
+}
+
+/* La palabra "Filtrar por:" en negrita sutil */
+.filter-label {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-marron-claro);
+}
+
+/* Cada opción individual (etiqueta + checkbox) */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+/* Efecto visual al pasar el mouse sobre la opción */
+.checkbox-container:hover {
+    color: var(--color-verde-esmeralda);
+}
+
+/* Estilo básico para el cuadrito del input */
+.catalog-filter {
+    cursor: pointer;
+    accent-color: var(--color-verde-esmeralda); /* Pinta el ticket del color de tu marca */
+    width: 16px;
+    height: 16px;
+}
