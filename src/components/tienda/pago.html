@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago Segura - Huerto Hogar</title>
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body style="background-color: #F7F7F7; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif;">
+
+    <main style="max-width: 600px; margin: 60px auto; padding: 0 20px;">
+        <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 5px solid #2E8B57;">
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo" style="width: 80px; height: 80px; object-fit: contain;">
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #333; margin: 10px 0 5px 0;">Webpay Simulado</h1>
+                <p style="color: #666; font-size: 0.85rem; margin: 0;">Entorno Seguro de Pruebas Académicas - INACAP</p>
+            </div>
+
+            <div style="background: #F9F9F9; padding: 20px; border-radius: 6px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee;">
+                <span style="font-weight: 500; color: #555;">Monto Total a Transferir:</span>
+                <span style="font-size: 1.4rem; font-weight: bold; color: #2E8B57;" id="checkout-final-amount">$0 CLP</span>
+            </div>
+
+            <form id="form-mock-payment">
+                <h3 style="font-size: 1rem; color: #333; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Seleccione Medio de Pago</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 35px;">
+                    <label style="display: flex; align-items: center; gap: 15px; padding: 12px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer;">
+                        <input type="radio" name="payment-option" value="visa" style="accent-color: #2E8B57;">
+                        <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/visa.svg" alt="Visa" style="width: 45px;">
+                        <span style="font-size: 0.95rem; font-weight: 500; color: #444;">Tarjeta de Crédito / Débito Visa</span>
+                    </label>
+
+                    <label style="display: flex; align-items: center; gap: 15px; padding: 12px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer;">
+                        <input type="radio" name="payment-option" value="mastercard" style="accent-color: #2E8B57;">
+                        <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/mastercard.svg" alt="Mastercard" style="width: 45px;">
+                        <span style="font-size: 0.95rem; font-weight: 500; color: #444;">Tarjeta de Crédito Mastercard</span>
+                    </label>
+
+                    <label style="display: flex; align-items: center; gap: 15px; padding: 12px; border: 1px solid #ddd; border-radius: 6px; cursor: pointer;">
+                        <input type="radio" name="payment-option" value="amex" style="accent-color: #2E8B57;">
+                        <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/amex.svg" alt="Amex" style="width: 45px;">
+                        <span style="font-size: 0.95rem; font-weight: 500; color: #444;">American Express</span>
+                    </label>
+                </div>
+
+                <button type="button" id="btn-confirm-final-payment" style="width: 100%; padding: 15px; background-color: #2E8B57; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(46,139,87,0.2); text-transform: uppercase;">
+                    Confirmar Transacción 🔒
+                </button>
+                
+                <a href="carrito.html" style="display: block; text-align: center; margin-top: 15px; color: #999; font-size: 0.85rem; text-decoration: none;">Anular pago y volver al carro</a>
+            </form>
+
+        </div>
+    </main>
+
+    <script src="../../js/main.js"></script>
+</body>
+</html>

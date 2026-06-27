@@ -22,15 +22,15 @@ function initStoreMap() {
 /* GESTIÓN DINÁMICA DEL MANTENEDOR DE PRODUCTOS (productosAdmin.html) */
 // ==========================================================================
 const initialProducts = [
-    { code: "FR001", category: "Frutas Frescas", name: "Manzanas Fuji", price: 1200, stock: 150, description: "Manzanas Fuji crujientes y dulces, cultivadas en el Valle del Maule. Perfectas para meriendas saludables." },
-    { code: "FR002", category: "Frutas Frescas", name: "Naranjas Valencia", price: 1000, stock: 200, description: "Jugosas y ricas en vitamina C, estas naranjas Valencia son ideales para zumos frescos y refrescantes." },
-    { code: "FR003", category: "Frutas Frescas", name: "Plátanos Cavendish", price: 800, stock: 250, description: "Plátanos maduros y dulces, perfectos para el desayuno o como snack energético. Ricos en potasio." },
-    { code: "VR001", category: "Verduras Orgánicas", name: "Zanahorias Orgánicas", price: 900, stock: 100, description: "Zanahorias crujientes cultivadas sin pesticidas en la Región de O'Higgins. Excelente fuente de vitamina A." },
-    { code: "VR002", category: "Verduras Orgánicas", name: "Espinacas Frescas", price: 700, stock: 80, description: "Espinacas frescas y nutritivas, perfectas para ensaladas y batidos verdes. Cultivadas bajo prácticas orgánicas." },
-    { code: "VR003", category: "Verduras Orgánicas", name: "Pimientos Tricolores", price: 1500, stock: 120, description: "Pimientos rojos, amarillos y verdes, ideales para salteados y platos coloridos. Ricos en antioxidantes." },
-    { code: "PO001", category: "Productos Orgánicos", name: "Miel Orgánica", price: 5000, stock: 50, description: "Miel pura y orgánica producida por apicultores locales. Rica en antioxidantes y con un sabor inigualable." },
-    { code: "PO003", category: "Productos Orgánicos", name: "Quinua Orgánica", price: 2400, stock: 0, description: "Quinua orgánica de alta calidad, ideal para acompañamientos saludables y ensaladas ricas en proteínas." },
-    { code: "PL001", category: "Productos Lácteos", name: "Leche Entera", price: 1100, stock: 0, description: "Leche entera fresca proveniente de granjas locales dedicadas a la producción responsable." }
+    { code: "FR001", category: "Frutas Frescas", name: "Manzanas Fuji", price: 1200, stock: 150, criticalStock: 10, description: "Manzanas Fuji crujientes y dulces, cultivadas en el Valle del Maule. Perfectas para meriendas saludables." },
+    { code: "FR002", category: "Frutas Frescas", name: "Naranjas Valencia", price: 1000, stock: 200, criticalStock: 10, description: "Jugosas y ricas en vitamina C, estas naranjas Valencia son ideales para zumos frescos y refrescantes." },
+    { code: "FR003", category: "Frutas Frescas", name: "Plátanos Cavendish", price: 800, stock: 250, criticalStock: 10, description: "Plátanos maduros y dulces, perfectos para el desayuno o como snack energético. Ricos en potasio." },
+    { code: "VR001", category: "Verduras Orgánicas", name: "Zanahorias Orgánicas", price: 900, stock: 100, criticalStock: 10, description: "Zanahorias crujientes cultivadas sin pesticidas en la Región de O'Higgins. Excelente fuente de vitamina A." },
+    { code: "VR002", category: "Verduras Orgánicas", name: "Espinacas Frescas", price: 700, stock: 80, criticalStock: 10, description: "Espinacas frescas y nutritivas, perfectas para ensaladas y batidos verdes. Cultivadas bajo prácticas orgánicas." },
+    { code: "VR003", category: "Verduras Orgánicas", name: "Pimientos Tricolores", price: 1500, stock: 120, criticalStock: 10, description: "Pimientos rojos, amarillos y verdes, ideales para salteados y platos coloridos. Ricos en antioxidantes." },
+    { code: "PO001", category: "Productos Orgánicos", name: "Miel Orgánica", price: 5000, stock: 50, criticalStock: 10, description: "Miel pura y orgánica producida por apicultores locales. Rica en antioxidantes y con un sabor inigualable." },
+    { code: "PO003", category: "Productos Orgánicos", name: "Quinua Orgánica", price: 2400, stock: 0, criticalStock: 10, description: "Quinua orgánica de alta calidad, ideal para acompañamientos saludables y ensaladas ricas en proteínas." },
+    { code: "PL001", category: "Productos Lácteos", name: "Leche Entera", price: 1100, stock: 0, criticalStock: 10, description: "Leche entera fresca proveniente de granjas locales dedicadas a la producción responsable." }
 ];
 
 function getStoredProducts() {
@@ -376,9 +376,9 @@ function initAddUserPage() {
         const emailVal = emailIn.value.trim().toLowerCase();
         if (!emailVal) { errEmail.textContent = "El correo es obligatorio."; isValid = false; }
         else {
-            const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|profesor\.inacap\.cl|gmail\.com)$/;
+            const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|inacapmail\.cl|profesor\.inacap\.cl|gmail\.com)$/;
             if (!allowedDomains.test(emailVal)) {
-                errEmail.textContent = "Solo correos @inacap.cl, @profesor.inacap.cl o @gmail.com.";
+                errEmail.textContent = "Solo correos @inacap.cl, @inacapmail.cl, @profesor.inacap.cl o @gmail.com.";
                 isValid = false;
             } else if (currentUsers.some(u => u.email === emailVal)) {
                 errEmail.textContent = "Este correo electrónico ya está registrado.";
@@ -466,9 +466,9 @@ function initEditUserPage() {
         const emailVal = emailIn.value.trim().toLowerCase();
         if (!emailVal) { errEmail.textContent = "El correo es obligatorio."; isValid = false; }
         else {
-            const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|profesor\.inacap\.cl|gmail\.com)$/;
+            const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|inacapmail\.cl|profesor\.inacap\.cl|gmail\.com)$/;
             if (!allowedDomains.test(emailVal)) {
-                errEmail.textContent = "Solo correos @inacap.cl, @profesor.inacap.cl o @gmail.com.";
+                errEmail.textContent = "Solo correos @inacap.cl, @inacapmail.cl, @profesor.inacap.cl o @gmail.com.";
                 isValid = false;
             } else if (usersList.some(u => u.email === emailVal && u.run !== user.run)) {
                 errEmail.textContent = "Este correo ya está registrado por otro usuario.";
@@ -540,9 +540,9 @@ function initClientRegisterPage() {
         const emailVal = emailIn ? emailIn.value.trim().toLowerCase() : "";
         if (!emailVal) { if (errEmail) errEmail.textContent = "El correo es obligatorio."; isValid = false; }
         else {
-            const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|profesor\.inacap\.cl|gmail\.com)$/;
+            const allowedDomains = /^[a-zA-Z0-9._%+-]+@(inacap\.cl|inacapmail\.cl|profesor\.inacap\.cl|gmail\.com)$/;
             if (!allowedDomains.test(emailVal)) {
-                if (errEmail) errEmail.textContent = "Solo correos @inacap.cl, @profesor.inacap.cl o @gmail.com.";
+                if (errEmail) errEmail.textContent = "Solo correos @inacap.cl, @inacapmail.cl, @profesor.inacap.cl o @gmail.com.";
                 isValid = false;
             } else if (currentUsers.some(u => u.email === emailVal)) {
                 if (errEmail) errEmail.textContent = "Este correo electrónico ya está registrado.";
@@ -1121,8 +1121,19 @@ window.removeProductFromCart = (code) => {
 function initCheckoutLogic() {
     const btnApply = document.getElementById("btn-apply-coupon");
     const inputCoupon = document.getElementById("cart-coupon-input");
-    const btnPay = document.getElementById("btn-cart-pay");
+    const btnPay = document.getElementById("btn-cart-pay"); // Botón de carrito.html
+    const btnConfirmPayment = document.getElementById("btn-confirm-final-payment"); // Botón de pago.html
     
+    // 1. Inyección del total en la pantalla de Pago si es que existe el contenedor
+    const checkoutTotalEl = document.getElementById("checkout-final-amount");
+    if (checkoutTotalEl) {
+        const cart = getCartItems();
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        // Si el cliente aplicó el cupón antes, calculamos con el 20% si corresponde o el subtotal puro
+        checkoutTotalEl.textContent = `$${subtotal.toLocaleString('es-CL')} CLP`;
+    }
+
+    // Manejo de cupones en el carro
     if (btnApply && inputCoupon) {
         btnApply.addEventListener("click", () => {
             const couponText = inputCoupon.value.trim().toUpperCase();
@@ -1134,7 +1145,7 @@ function initCheckoutLogic() {
                 const totalConDescuento = subtotal - descuento;
                 
                 if (totalAmountEl && subtotal > 0) {
-                    totalAmountEl.innerHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem;">$${subtotal.toLocaleString('es-CL')}</span> <br> <span style="color: #FFD700; font-weight: bold;">$${totalConDescuento.toLocaleString('es-CL')} CLP (20% Off)</span>`;
+                    totalAmountEl.innerHTML = `<span style="text-decoration: line-through; color: #999; font-size: 0.9rem;">$${subtotal.toLocaleString('es-CL')}</span> <br> <span style="color: #2E8B57; font-weight: bold;">$${totalConDescuento.toLocaleString('es-CL')} CLP (20% Off)</span>`;
                     alert("¡Cupón 'INACAP20' aplicado de forma exitosa!");
                 }
             } else {
@@ -1143,6 +1154,7 @@ function initCheckoutLogic() {
         });
     }
 
+    // ETAPA 1: Botón "PAGAR" en carrito.html -> Valida stock y redirige a la pasarela
     if (btnPay) {
         btnPay.addEventListener("click", () => {
             const cart = getCartItems();
@@ -1150,7 +1162,62 @@ function initCheckoutLogic() {
                 alert("No tienes productos en tu carrito para procesar el pago.");
                 return;
             }
-            alert("¡Pedido confirmado con éxito! Tu boleta ha sido generada y el despacho se encuentra en preparación.");
+            
+            // Verificación preventiva de existencias antes de ir a pagar
+            let catalog = getStoredProducts();
+            let stockValido = true;
+            let errorProduct = "";
+
+            for (let item of cart) {
+                const productInCatalog = catalog.find(p => p.code === item.code);
+                if (!productInCatalog || productInCatalog.stock < item.quantity) {
+                    stockValido = false;
+                    errorProduct = item.name;
+                    break;
+                }
+            }
+
+            if (!stockValido) {
+                alert(`Lo sentimos, el producto "${errorProduct}" no tiene suficiente stock disponible. Modifica las cantidades antes de continuar.`);
+                return;
+            }
+
+            // Si el inventario es correcto, viaja a la pantalla intermedia de selección de tarjetas
+            window.location.href = "pago.html";
+        });
+    }
+
+    // ETAPA 2: Botón "CONFIRMAR TRANSACCIÓN" en pago.html -> Ejecuta el descuento real y vacía la bolsa
+    if (btnConfirmPayment) {
+        btnConfirmPayment.addEventListener("click", (e) => {
+            e.preventDefault();
+            
+            // ... (aquí mantienes tu código de validación de radio buttons de tarjetas)
+
+            const cart = getCartItems();
+            let catalog = getStoredProducts();
+            let criticalAlerts = []; // Guarda productos que entraron en riesgo
+
+            cart.forEach(item => {
+                const productInCatalog = catalog.find(p => p.code === item.code);
+                if (productInCatalog) {
+                    productInCatalog.stock -= item.quantity; // Descuento físico
+
+                    // 🌟 REGLA DE NEGOCIO: Si el stock actual es igual o inferior al crítico, gatilla la alerta
+                    if (productInCatalog.stock <= productInCatalog.criticalStock) {
+                        criticalAlerts.push(`${productInCatalog.name} (Quedan: ${productInCatalog.stock} unidades)`);
+                    }
+                }
+            });
+
+            localStorage.setItem("huerto_products_catalog", JSON.stringify(catalog));
+
+            // 🌟 DISPARADOR EN PANTALLA: Informa al administrador/vendedor el estado de alerta
+            if (criticalAlerts.length > 0) {
+                alert(`⚠️ ¡AVISO DE STOCK CRÍTICO DETECTADO! ⚠️\n\nLos siguientes productos han alcanzado o superado su límite mínimo de inventario:\n- ${criticalAlerts.join("\n- ")}\n\nPor favor, gestione la reposición en el panel administrativo.`);
+            }
+
+            alert("🔒 Transacción Procesada con Éxito mediante Webpay Simulado.\n\n¡Tu pedido ha sido confirmado! El stock fue rebajado del catálogo general y el despacho está en preparación.");
             localStorage.removeItem("huerto_cart");
             window.location.href = "productos.html";
         });
