@@ -1252,6 +1252,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
+
 // ==========================================================================
 /* CONTROL DE CARGA CENTRALIZADO ÚNICO GATILLADO AL INICIO */
 // ==========================================================================

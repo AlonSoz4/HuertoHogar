@@ -753,3 +753,83 @@ a {
     grid-template-columns: repeat(5, 1fr); /* Forzado a 5 columnas como el mockup */
     gap: 20px;
 }
+
+/* ==========================================================================
+   📱 MENÚ DE NAVEGACIÓN RESPONSIVO AUTOMÁTICO - HUERTO HOGAR
+   ========================================================================== */
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .header-container {
+        flex-direction: column !important;
+        gap: 15px !important;
+        text-align: center !important;
+        padding: 15px 10px !important;
+    }
+
+    .main-nav {
+        width: 100% !important;
+    }
+
+    .main-nav ul {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 12px !important;
+    }
+
+    .logo-area {
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+
+    .site-logo {
+        width: 55px !important;
+        height: 55px !important;
+        margin: 0 auto !important;
+    }
+
+    .cart-area {
+        margin-top: 5px !important;
+        display: inline-block !important;
+        background-color: rgba(46, 139, 87, 0.1) !important;
+        padding: 6px 15px !important;
+        border-radius: 20px !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .main-nav ul {
+        gap: 8px !important;
+    }
+    
+    .main-nav ul li a {
+        font-size: 0.8rem !important;
+    }
+    
+    .site-title {
+        font-size: 1.2rem !important;
+    }
+}

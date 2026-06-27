@@ -1,0 +1,16 @@
+# Archivos temporales del sistema operativo
+Thumbs.db
+.DS_Store
+*.log
+
+# Carpetas de configuración del editor de código (VS Code)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Archivos temporales de Word/Documentos de la pauta
+~$*.docx
