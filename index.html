@@ -31,8 +31,8 @@
                 </ul>
             </nav>
 
-            <div class="cart-area" id="cart-status-area">
-                <a href="#" id="cart-btn" class="cart-link">
+            <div class="cart-area">
+                <a href="./src/components/tienda/carrito.html" id="cart-btn" class="cart-link" style="text-decoration: none; color: #2E8B57;">
                     <span class="cart-icon" id="cart-ico">🛒</span> 
                     <span class="cart-text" id="cart-text-label">Cart (<span id="cart-count">0</span>)</span>
                 </a>
@@ -76,16 +76,13 @@
         </div>
     </section>
 
-    <section class="products-section" id="featured-products-section">
-            <div class="products-container">
-                
-                <h2 class="section-title" id="featured-products-heading">Nuestros Productos Destacados</h2>
-                
-                <div class="products-grid" id="products-showcase-grid">
-                    
-                    </div>
-
-            </div>
+    <section class="featured-section" style="padding: 40px 20px; max-width: 1200px; margin: 0 auto;">
+        <h2 style="font-family: 'Playfair Display', serif; text-align: center; color: #333; margin-bottom: 30px;">Productos Destacados</h2>
+        
+        <!-- ID CLAVE PARA JAVASCRIPT -->
+        <div id="featured-products-grid" class="products-grid-layout" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px;">
+            <!-- JS cargará las 4 tarjetas automáticamente aquí -->
+        </div>
     </section>
 
 </main>
@@ -102,13 +99,13 @@
                 </div>
             </div>
             
-            <nav class="footer-nav-categories" id="footer-links-block">
-                <ul>
-                    <li><a href="src/components/tienda/productos.html?cat=frutas" class="footer-link" id="link-cat-x">Frutas Frescas</a></li>
-                    <li><a href="src/components/tienda/productos.html?cat=verduras" class="footer-link" id="link-cat-y">Verduras Orgánicas</a></li>
-                    <li><a href="src/components/tienda/productos.html?cat=otros" class="footer-link" id="link-cat-z">Productos del Campo</a></li>
-                </ul>
-            </nav>
+        <nav class="footer-nav-categories" id="footer-links-block">
+            <ul>
+                <li><a href="./src/components/tienda/nosotros.html" class="footer-link">Nuestra Historia</a></li>
+                <li><a href="./src/components/tienda/blog.html" class="footer-link">Blog y Consejos</a></li>
+                <li><a href="./src/components/tienda/contacto.html" class="footer-link">Soporte y Contacto</a></li>
+            </ul>
+        </nav>
             
             <div class="footer-newsletter-area" id="footer-subscribe-block">
                 <p class="newsletter-title">¡Mantente en contacto! Súmate a nuestro boletín.</p>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Carrito de Compras - Huerto Hogar</title>
+    <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body style="background-color: #F7F7F7; margin: 0; padding: 0;">
+
+    <!-- HEADER COMPARTIDO -->
+    <header class="main-header" id="site-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo HuertoHogar" class="site-logo" id="main-logo">
+                <span class="site-title" id="main-title">Huerto Hogar</span>
+            </div>
+            <nav class="main-nav" id="navigation-bar">
+                <ul id="nav-list">
+                    <li><a href="../../../index.html" class="nav-link">Home</a></li>
+                    <li><a href="productos.html" class="nav-link">Productos</a></li>
+                    <li><a href="nosotros.html" class="nav-link">Nosotros</a></li>
+                    <li><a href="blogs.html" class="nav-link">Blogs</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="cart-area">
+                <a href="carrito.html" class="cart-link active" style="font-weight: bold; color: #2E8B57; text-decoration: none;">
+                    <span>🛒</span> Cart (<span id="cart-count">0</span>)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CUERPO DEL CARRITO -->
+    <main style="max-width: 1100px; margin: 40px auto; padding: 0 20px; font-family: 'Montserrat', sans-serif;">
+        <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #333; margin-bottom: 30px;">Mi carrito de compras</h1>
+        
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start;">
+            
+            <!-- 🌟 ZONA DE PRODUCTOS (Inyectada dinámicamente por JS) -->
+            <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);" id="cart-items-wrapper">
+                <!-- El JavaScript dibujará los productos añadidos aquí dentro -->
+            </div>
+            
+            <!-- ZONA DE RESUMEN Y PAGO -->
+            <div style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-top: 4px solid #2E8B57;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <span style="font-size: 1.2rem; font-weight: 500; color: #666;">TOTAL:</span>
+                    <!-- 🌟 ID CLAVE: Aquí se inyecta el cálculo matemático -->
+                    <span style="font-size: 1.6rem; font-weight: bold; color: #333;" id="cart-total-amount">$0 CLP</span>
+                </div>
+                
+                <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;">
+                
+                <!-- Entrada de cupones requerida por las reglas de negocio promocionales -->
+                <div style="margin-bottom: 25px;">
+                    <label for="cart-coupon-input" style="font-size: 0.85rem; color: #666; display: block; margin-bottom: 8px;">¿Tienes un cupón de descuento?</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="cart-coupon-input" placeholder="Ej: INACAP20" style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; text-transform: uppercase;">
+                        <button type="button" id="btn-apply-coupon" style="padding: 10px 15px; background: #e2e3e5; color: #333; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 0.85rem;">APLICAR</button>
+                    </div>
+                </div>
+                
+                <!-- Botón de Confirmación y Descuento de Inventario -->
+                <button type="button" id="btn-cart-pay" style="width: 100%; padding: 15px; background-color: #2E8B57; color: white; border: none; border-radius: 4px; font-weight: bold; font-size: 1.1rem; cursor: pointer; box-shadow: 0 4px 6px rgba(46,139,87,0.2); transition: background 0.2s;">
+                    PAGAR
+                </button>
+                
+                <a href="productos.html" style="display: block; text-align: center; margin-top: 15px; color: #666; font-size: 0.85rem; text-decoration: none;">← Seguir comprando</a>
+            </div>
+            
+        </div>
+    </main>
+
+    <!-- FOOTER COMPARTIDO -->
+    <footer class="main-footer" id="site-footer" style="margin-top: 80px;">
+        <div class="footer-container">
+            <div class="footer-brand-area" id="footer-brand-block">
+                <span class="footer-site-name">HuertoHogar</span>
+                <div class="payment-methods" id="payment-gateways">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/visa.svg" alt="Visa" class="card-logo">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/mastercard.svg" alt="Mastercard" class="card-logo">
+                    <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/amex.svg" alt="American Express" class="card-logo">
+                </div>
+            </div>
+            <nav class="footer-nav-categories" id="footer-links-block">
+                <ul>
+                    <li><a href="nosotros.html" class="footer-link">Nuestra Historia</a></li>
+                    <li><a href="blogs.html" class="footer-link">Blog y Consejos</a></li>
+                    <li><a href="contacto.html" class="footer-link">Soporte y Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Control unificado central -->
+    <script src="../../js/main.js"></script>
+</body>
+</html>

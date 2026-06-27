@@ -4,42 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de Producto - Huerto Hogar</title>
-
     <link rel="icon" type="image/png" href="../../assets/images/HuertoHogar-Logo.jpg">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-
     <header class="main-header" id="site-header">
-        <div class="header-container">  
-            
+        <div class="header-container">
             <div class="logo-area">
                 <img src="../../assets/images/HuertoHogar-Logo.jpg" alt="Logo HuertoHogar" class="site-logo" id="main-logo">
                 <span class="site-title" id="main-title">Huerto Hogar</span>
             </div>
-
             <nav class="main-nav" id="navigation-bar">
                 <ul id="nav-list">
                     <li><a href="../../../index.html" class="nav-link" id="nav-home">Home</a></li>
-                    <li><a href="productos.html" class="nav-link" id="nav-products">Productos</a></li>
+                    <li><a href="productos.html" class="nav-link active" id="nav-products">Productos</a></li>
                     <li><a href="nosotros.html" class="nav-link" id="nav-about">Nosotros</a></li>
                     <li><a href="blogs.html" class="nav-link" id="nav-blogs">Blogs</a></li>
                     <li><a href="contacto.html" class="nav-link" id="nav-contact">Contacto</a></li>
                 </ul>
             </nav>
-
             <div class="cart-area" id="cart-status-area">
                 <a href="carrito.html" id="cart-btn" class="cart-link">
-                    <span class="cart-icon" id="cart-ico">🛒</span> 
+                    <span class="cart-icon" id="cart-ico"> 🛒 </span>
                     <span class="cart-text" id="cart-text-label">Cart (<span id="cart-count">0</span>)</span>
                 </a>
             </div>
-
         </div>
     </header>
 
@@ -51,22 +45,20 @@
         </div>
     </div>
 
-    <main class="detail-main-wrapper">
+    <main class="detail-main-wrapper" id="product-detail-wrapper">
         <div class="detail-container">
-            
+
             <nav class="breadcrumbs-nav" id="breadcrumbs-block">
-                <a href="../../../index.html">Home</a> &gt; 
-                <a href="productos.html" id="breadcrumb-category">Frutas Frescas</a> &gt; 
-                <span id="breadcrumb-product-name">Manzanas Fuji</span>
+                <a href="../../../index.html">Home</a> &gt;
+                <a href="productos.html" id="detail-category">Cargando...</a> &gt;
+                <span id="breadcrumb-product-name">Ficha técnica</span>
             </nav>
 
             <section class="product-presentation" id="presentation-section">
-                
                 <div class="product-media-gallery">
                     <div class="main-image-viewport" id="product-main-view">
                         <img src="https://raw.githubusercontent.com/AlonSoz4/HuertoHogar/main/src/assets/images/HuertoHogar-Logo.jpg" alt="Imagen del Producto" id="detail-main-img">
                     </div>
-                    
                     <div class="thumbnails-grid" id="product-thumbs-container">
                         <div class="thumb-box active"><img src="https://via.placeholder.com/80" alt="Vista 1"></div>
                         <div class="thumb-box"><img src="https://via.placeholder.com/80" alt="Vista 2"></div>
@@ -76,51 +68,44 @@
 
                 <div class="product-info-purchase" id="purchase-controls-block">
                     <div class="info-header-row">
-                        <h1 class="detail-product-title" id="detail-title">Manzanas Fuji</h1>
-                        <span class="detail-product-price" id="detail-price">$1.200 / kg</span>
+                        <h1 class="detail-product-title" id="detail-name">Cargando Producto...</h1>
+                        <span class="detail-product-price" id="detail-price">$0</span>
                     </div>
-
+                    
+                    <p style="font-size: 0.85rem; color: #666; margin: -5px 0 10px 0; font-weight: 500;" id="detail-code">Código: --</p>
+                    
                     <hr class="detail-divider">
-
-                    <p class="detail-product-description" id="detail-description">
-                        Manzanas Fuji crujientes y dulces, cultivadas en el Valle del Maule. Perfectas para meriendas saludables o como ingrediente en postres. Estas manzanas son conocidas por su textura firme y su sabor equilibrado entre dulce y ácido.
+                    
+                    <p class="detail-product-description" id="detail-desc">
+                        Cargando información del huerto orgánico...
                     </p>
+                    
+                    <p style="font-size: 0.9rem; color: #2E8B57; font-weight: bold; margin-bottom: 20px;" id="detail-stock">Stock disponible: --</p>
 
                     <div class="purchase-action-box">
                         <div class="quantity-selector-wrapper">
-                            <label for="product-quantity" class="quantity-label">Cantidad</label>
-                            <select id="product-quantity" class="quantity-select">
+                            <label for="detail-quantity-select" class="quantity-label">Cantidad</label>
+                            <select id="detail-quantity-select" class="quantity-select">
                                 <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
                             </select>
                         </div>
-
-                        <button type="button" class="btn-add-to-cart" id="btn-add-cart-submit">Añadir al carrito</button>
+                        <button type="button" class="btn-add-to-cart" id="btn-detail-add-cart">Añadir al carrito</button>
                     </div>
-
                     <hr class="detail-divider">
                 </div>
-
             </section>
 
             <section class="related-products-section" id="related-section">
-                <h2 class="related-section-title">Related Products</h2>
-                
-                <div class="related-products-grid" id="related-grid-container">
-                    
-                    <div class="related-item-placeholder">JS cargarará productos sugeridos aquí...</div>
-
+                <h2 class="related-section-title">Productos Relacionados</h2>
+                <div class="related-products-grid" id="related-products-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
+                    <div class="related-item-placeholder">JS cargará productos sugeridos aquí...</div>
                 </div>
             </section>
-
-        </div> </main>
+        </div>
+    </main>
 
     <footer class="main-footer" id="site-footer">
         <div class="footer-container">
-            
             <div class="footer-brand-area" id="footer-brand-block">
                 <span class="footer-site-name">HuertoHogar</span>
                 <div class="payment-methods" id="payment-gateways">
@@ -129,7 +114,6 @@
                     <img src="https://raw.githubusercontent.com/aaronfagan/svg-credit-card-payment-icons/master/flat/amex.svg" alt="American Express" class="card-logo" title="American Express">
                 </div>
             </div>
-
             <nav class="footer-nav-categories" id="footer-links-block">
                 <ul>
                     <li><a href="productos.html" class="footer-link">Frutas Frescas</a></li>
@@ -137,7 +121,6 @@
                     <li><a href="productos.html" class="footer-link">Productos del Campo</a></li>
                 </ul>
             </nav>
-
             <div class="footer-newsletter-area" id="footer-subscribe-block">
                 <p class="newsletter-title">¡Mantente en contacto! Súmate a nuestro boletín.</p>
                 <form class="newsletter-form" id="form-newsletter" action="#" method="POST">
@@ -145,12 +128,9 @@
                     <button type="submit" class="btn-newsletter" id="btn-newsletter-submit">Suscribirse</button>
                 </form>
             </div>
-
         </div>
     </footer>
 
-    <script src="../../js/validaciones.js" id="script-validations"></script>
     <script src="../../js/main.js" id="script-main"></script>
-
 </body>
 </html>
